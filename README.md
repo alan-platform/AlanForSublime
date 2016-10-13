@@ -1,3 +1,12 @@
-# Alan syntax highlighting and snippets for Sublime Text
+# Alan/Fabric syntax highlighting for Sublime Text
 
-Copy this folder to the Packages/User folder (in Sublime select "Browse Packages" from the menu).
+## How to install
+
+- Start Sublime Text 3
+- Make sure packagecontrol has been installed
+- Open command palette (ctrl-shift-p)
+- Choose "Add repository"
+- Enter "packages.m-industries.com/sublime/fabric-sublime-repository.json"
+- You can now open the command palette and run "Install Package" and select "Fabric Sublime Syntax"
+
+The package will be updated automatically.
