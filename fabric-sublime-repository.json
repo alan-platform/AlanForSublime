@@ -1,0 +1,19 @@
+{
+	"schema_version": "3.0.0",
+	"packages": [
+		{
+			"name": "Fabric Sublime Syntax",
+			"details": "https://github.com/M-industries/fabric-sublime-syntax",
+			"releases": [
+				{
+					"version": "1.0.0",
+					"date": "2016-10-13 11:00:00",
+					"url": "http://packages.m-industries.com/sublime/sublime.zip",
+					"sublime_text": ">=3100"
+				}
+			]
+		}
+	],
+	"dependencies": [],
+	"includes": []
+}
