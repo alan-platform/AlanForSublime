@@ -1,0 +1,165 @@
+%YAML 1.2
+---
+# http://www.sublimetext.com/docs/3/syntax.html
+name: Alan
+file_extensions:
+  - alan
+  - schema
+  - grammar
+scope: source.alan
+contexts:
+  main:
+    - include: comments
+    - include: strings
+    - include: translations
+    - include: braces
+    - include: risky
+    - include: constants
+    - include: punctuation
+    - include: numbers
+    - include: steps
+    - include: typical
+    - include: catch-all
+
+  comments:
+    - match: //.*$
+      scope: comment.line.double-slash.alan
+    - match: /\*
+      scope: punctuation.definition.comment.alan
+      push:
+        - meta_scope: comment.block.alan
+        - match: \*/
+          scope: punctuation.definition.comment.alan
+          pop: true
+
+  strings:
+    - match: (\").*?(\")
+      scope: string.quoted.double.alan
+      captures:
+        1: punctuation.definition.string.begin.alan
+        2: punctuation.definition.string.end.alan
+    - match: (\').*?(\')
+      scope: string.quoted.single.alan
+      captures:
+        1: punctuation.definition.string.begin.alan
+        2: punctuation.definition.string.end.alan
+
+  braces:
+    - match: (?:\s|^)(\[)(?=\s|//)
+      captures:
+        1: meta.brace.square punctuation.definition.array.begin.alan
+    - match: (?:\s|^)(\])(?=\s|//)
+      captures:
+        1: meta.brace.square punctuation.definition.array.end.alan
+    - match: (?:\s|^)(\{{)(?=\s|//)
+      captures:
+        1: meta.brace.curly punctuation.definition.parameters.begin.alan
+    - match: (?:\s|^)(\}})(?=\s|//)
+      captures:
+        1: meta.brace.curly punctuation.definition.array.end.alan
+    - match: (?:\s|^)(\{)(?=\s|//)
+      captures:
+        1: meta.brace.curly punctuation.definition.parameters.begin.alan
+    - match: (?:\s|^)(\})(?=\s|//)
+      captures:
+        1: meta.brace.curly punctuation.definition.array.end.alan
+    - match: (?:\s|^)(\(|\~\(|\.\(|\.\^\(|\>\(|\+\(|\:\(|\%\^\(|\%\(|\+\^\(|\?\^\(|\}\()(?=\s|//)
+      captures:
+        1: meta.brace.round punctuation.definition.parameters.begin.alan
+    - match: (?:\s|^)(\))(?=\s|//)
+      captures:
+        1: meta.brace.round punctuation.definition.parameters.end.alan
+
+  risky:
+    - match: \bFIXME\b
+      scope: invalid
+    - match: (?:\s|^)(<!)(?=\s|//)
+      captures:
+        1: invalid punctuation.definition.unsafe.begin.alan
+      push:
+        - meta_scope: meta.unsafe.alan
+        - match: \>(?=\s|//)
+          captures:
+            0: invalid punctuation.definition.unsafe.end.alan
+          pop: true
+
+  constants:
+    - match: \b[0-9]+(?=\s|//)
+      scope: constant.numeric.alan
+    - match: \bMonday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday\b
+      scope: constant.language.alan
+
+  punctuation:
+    - match: (?:\s|^)(<=|=|>=|==|&&)(?=\s|//)
+      captures:
+        1: keyword.operator.comparison.alan
+    - match: (?:\s|^)(::|:|->|~>|<-|<~)(?=\s|//)
+      captures:
+        1: punctuation.separator.key-value.alan
+
+  numbers:
+    - match: \b(integer|number|natural)\b
+      captures:
+        0: support.function.alan
+      push:
+        - meta_scope: meta.comment
+        - include: steps
+        - match: (\').*?(\')
+          scope: string.interpolated.alan # string literal?
+          captures:
+            1: punctuation.definition.string.begin.alan
+            2: punctuation.definition.string.end.alan
+          pop: true
+
+  steps:
+    - match: (?:\s|^)(\`|\^|\@\?\^|\@\%\^|\@|\?\^|\?\?\^|\?|\?\||\>|\<|\>\>|\<\<|\/|\.\}|\.\^|\.\>|\.\.\.|\.|\-\-|\-|\,|\+\^|\+|\*\*|\*\&\#|\*\&|\*|!\&|\&\^|\&\&|\&|\%\}|\%\^|\%|\$\^|\$|\#|~|\!|\|)(?=\s)
+      captures:
+        1: variable.parameter.alan
+
+  typical:
+    - match: ^\s*(webservers|systems|system instances|settings|servers|root|root|roles mapping|roles|reporting|providing connections|phrases|numerical types|linked node mapping|languages|keywords|interfaces mapping|interface|external systems|dynamic users|duplication mapping|component types|component rules)(?=\s|//)
+      scope: storage.alan
+    - match: (?:\s|^)(10\^|%d|trim|sumlist|sum|subtract|stringify|set|product|min|max|increment|fraction|execute|division|count|ceil|add)(?=\s|//)
+      captures:
+        1: keyword.operator.math.alan
+
+  translations:
+    - match: ^phrases\b
+      scope: storage.alan
+      push:
+        - include: comments
+        - match: (\').*?(\')
+          scope: variable.other.readwrite.alan
+          captures:
+            1: punctuation.definition.string.begin.alan
+            2: punctuation.definition.string.end.alan
+        - match: ^(?=\n|languages)
+          pop: true
+    - match: ^languages\b
+      scope: storage.alan
+      push:
+      - include: comments
+      - match: (\').*?(\')(?:\n)
+        scope: storage.type.alan
+        captures:
+          1: punctuation.definition.string.begin.alan
+          2: punctuation.definition.string.end.alan
+      - match: (\').*?(\')
+        scope: variable.other.readwrite.alan
+        captures:
+          1: punctuation.definition.string.begin.alan
+          2: punctuation.definition.string.end.alan
+      - match: (?:\s|^)(->)(?=\s|//)
+        captures:
+          1: punctuation.separator.key-value.alan
+      - include: strings
+      - match: ^\n
+        pop: true
+
+  catch-all:
+    - match: (?:\s|^)(zero|yes|writable|workfor|without|with|window|widget|where|Wednesday|webservers|webserver|wallpaper|views|view|verified|value|UTC|users|user|url|updater|update|unsubscribe|unique|unexpected|unconstrained|UID|types|type|type|Tuesday|true|trim|token|today|to|timezone|timer|time|Thursday|then|templates|TEMP2|TEMP|tags|tag|tables|table|systems|system|switchable|switch|supported|Sunday|sumlist|sum|success|subtract|substring|subscription|subscribe|stringify|strategy|str|store|stopwatch|sticky|std|static|state|state|startswith|start|space|sort|socket|small|single|shared|setto|settings|set|servers|separator|separate|selection|selection|selected|select|seconds|schedule|scaling|Saturday|root|roles|role|resolvable|requires|request|reports|reporting|report|rename|remove|remainder|reload|relative|regexp|refresh|referencer|record|read|rate|query|providing|provides|provide|protocol|property|project|product|primary|prevention|preceding|power|port|placeholder|phrases|pcsc|path|password|parameters|parameter|panic|overview|outputs|out|ordered|or|operator|open|ontimeout|one|on|of|numerical|nullable|now|not|none|node|no|new|never|namespace|name|mutation|multi-line|Monday|models|model|minutes|min|migration|metadata|merge|max|markup|mapping|map|log|loader|load|list|linker|linked|link|limit|limit|lifetime|length|languages/|languages|language|label|keys|keyboard|key|key|join|JOIN|invoke|invocation|invalidate|interval|internal|interfaces|interface|instruction|instances|instance|inputs|input|inlined|inline|initialize|initialization|initial|index|indent|increment|include|in|implicit|implementation|implement|ignore|if|id|hours|hour|hidden|hash|hack|guid|graph|from|Friday|frames|forward|foreign|floor|float|flatten|flags|FIXME|first|find|filter|filename|file_prefix|file_name_parameters|file_name_arguments|fields|fast|false|failure|factor|external|extension|exposes|expose|experimental|exit|EXISTS|execute|every|event|errors|error|equals|enum|entry|entity|enriched|enrich|engine|enabled|empty|email|else|dynamic|duration|duration|duplicate|dormant|division|dist|disabled|diff|devenv|desired|descending|desc|derived|deprecated|deployments|denseness|delete|default|default|decimal|day|datetime|date|database|custom|current|creator|creation|created|create|count|copy|convert|control|context|content|contains|consumes|consume|constrain|connections|connection|configuration|concat|compiler|command|columns|clicks|checkpoint|ceil|causal|cast|candidate|buckets|brand|branch|boolean|blinking|binding|bidirectional|base|autoincrement|ATR|at|ascending|as|application|any|anonymous|announcement|and|anchor|allow|aggregate|administrator|add|acyclic|accidental|.self|$package|$deployed)(?=\s|//|:)
+      captures:
+        1: entity.name.function.alan
+    - match: (?:\s|^)(text|stategroup|sparsematrix|reference|number|natural|matrix|integer|group|file|dictionary|densematrix|component|collection)(?=\s|//|:)
+      captures:
+        1: support.function.alan
