@@ -6,8 +6,8 @@
 			"details": "https://github.com/M-industries/fabric-sublime-syntax",
 			"releases": [
 				{
-					"version": "1.0.0",
-					"date": "2016-10-13 11:00:00",
+					"version": "VERSION",
+					"date": "DATE",
 					"url": "http://packages.m-industries.com/sublime/sublime.zip",
 					"sublime_text": ">=3100"
 				}
