@@ -1,3 +1,5 @@
 run:
   script:
     - ./publish.sh
+  only:
+    - tags
