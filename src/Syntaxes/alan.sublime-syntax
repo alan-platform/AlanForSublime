@@ -33,16 +33,28 @@ contexts:
           pop: true
 
   strings:
-    - match: (\").*?(\")
-      scope: string.quoted.double.alan
+    - match: '"'
       captures:
-        1: punctuation.definition.string.begin.alan
-        2: punctuation.definition.string.end.alan
-    - match: (\').*?(\')
-      scope: string.quoted.single.alan
+        0: punctuation.definition.string.begin.alan
+      push:
+        - meta_scope: string.quoted.double.alan
+        - match: \\.
+          scope: constant.character.escape.alan
+        - match: '"'
+          captures:
+            0: punctuation.definition.string.end.alan
+          pop: true
+    - match: "'"
       captures:
-        1: punctuation.definition.string.begin.alan
-        2: punctuation.definition.string.end.alan
+        0: punctuation.definition.string.begin.alan
+      push:
+        - meta_scope: string.quoted.single.alan
+        - match: \\.
+          scope: constant.character.escape.alan
+        - match: "'"
+          captures:
+            0: punctuation.definition.string.end.alan
+          pop: true
 
   braces:
     - match: (?:\s|^)(\[)(?=\s|//)
