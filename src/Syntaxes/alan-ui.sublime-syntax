@@ -8,16 +8,6 @@ file_extensions:
 scope: source.ui.alan
 contexts:
   main:
-    - match: \s(\')([^']+)(\') (\:) (\')(.*)(\')
-      scope: meta.assignment.alan
-      captures:
-        1: punctuation.definition.string.begin.alan
-        2: entity.name.function.alan
-        3: punctuation.definition.string.end.alan
-        4: punctuation.separator.key-value.alan
-        5: punctuation.definition.string.begin.alan
-        6: entity.name.function.alan
-        7: punctuation.definition.string.end.alan
     - match: (?:^\s*)(\')([^']+)(\') (?=\()
       scope: meta.state.alan
       captures:
