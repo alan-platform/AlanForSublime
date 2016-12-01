@@ -6,12 +6,105 @@ file_extensions:
   - ui.alan
   - control
 scope: source.ui.alan
+
 contexts:
   main:
-    - match: (?:^\s*)(\')([^']+)(\') (?=\()
+    - include: settings
+    - include: states
+    - include: translations
+    - include: scope:source.alan
+
+  comments:
+    - match: //.*$
+      scope: comment.line.double-slash.alan
+    - match: /\*
+      scope: punctuation.definition.comment.alan
+      push:
+        - meta_scope: comment.block.alan
+        - match: \*/
+          scope: punctuation.definition.comment.alan
+          pop: true
+
+  doublestrings:
+    - match: (\").*?(\")
+      scope: string.quoted.double.alan
+      captures:
+        1: punctuation.definition.string.begin.alan
+        2: punctuation.definition.string.end.alan
+
+  singlestrings:
+    - match: (\').*?(\')
+      scope: string.quoted.single.alan
+      captures:
+        1: punctuation.definition.string.begin.alan
+
+  states:
+    - match: (?:^\s+)(\')([^']+)(\')\s+(?=\()
       scope: meta.state.alan
       captures:
         1: punctuation.definition.string.begin.alan
         2: support.class.alan
         3: punctuation.definition.string.end.alan
-    - include: scope:source.alan
+
+  settings:
+    - match: ^settings\b
+      scope: storage.alan
+      push:
+        - meta_scope: settings.block.alan
+        - include: comments
+        - include: singlestrings
+        - include: doublestrings
+        - match: (:)(?=\s|//)
+          captures:
+            1: punctuation.separator.key-value.alan
+        - match: (?:\s|^)(in frame|root view|frames|announcement|scaling|report limit|fast clicks|content selection|reload on unexpected error|accidental exit prevention|default language|application wallpaper url|application name|application creator|application brand)(?=\s|//|:)
+          captures:
+            1: entity.name.function.alan
+        - match: (?:\s|^)(enabled|disabled)(?=\s|//)
+          captures:
+            1: constant.language.boolean.alan
+        - match: \b[0-9]+(?=\s|//)
+          scope: constant.numeric.alan
+        - match: (?:\s|^)(\[)(?=\s|//)
+          captures:
+            1: meta.brace.square punctuation.definition.array.begin.alan
+        - match: (?:\s|^)(\])(?=\s|//)
+          captures:
+            1: meta.brace.square punctuation.definition.array.end.alan
+        - match: ^(?=\n)
+          pop: true
+
+  translations:
+    - match: ^phrases\b
+      scope: storage.alan
+      push:
+        - meta_scope: phrases.block.alan
+        - include: comments
+        - match: (\').*?(\')
+          scope: variable.other.readwrite.alan
+          captures:
+            1: punctuation.definition.string.begin.alan
+            2: punctuation.definition.string.end.alan
+        - match: ^(?=\n|languages)
+          pop: true
+    - match: ^languages\b
+      scope: storage.alan
+      push:
+        - meta_scope: languages.block.alan
+        - include: comments
+        - match: (\').*?(\')(?:\n)
+          scope: storage.type.alan
+          captures:
+            1: punctuation.definition.string.begin.alan
+            2: punctuation.definition.string.end.alan
+        - match: (\').*?(\')
+          scope: variable.other.readwrite.alan
+          captures:
+            1: punctuation.definition.string.begin.alan
+            2: punctuation.definition.string.end.alan
+        - match: (?:\s|^)(->)(?=\s|//)
+          captures:
+            1: punctuation.separator.key-value.alan
+        - include: doublestrings
+        - match: ^\n
+          pop: true
