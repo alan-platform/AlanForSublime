@@ -11,6 +11,7 @@ contexts:
   main:
     - include: settings
     - include: states
+    - include: translated
     - include: translations
     - include: scope:source.alan
 
@@ -24,6 +25,13 @@ contexts:
         - match: \*/
           scope: punctuation.definition.comment.alan
           pop: true
+
+  translated:
+    - match: (?<=->)\s+(')(.*)(')(?:\n)
+      captures:
+        1: punctuation.definition.string.begin.alan
+        2: support.variable.alan
+        3: punctuation.definition.string.begin.alan
 
   doublestrings:
     - match: '"'
@@ -94,7 +102,7 @@ contexts:
         - meta_scope: phrases.block.alan
         - include: comments
         - match: (\').*?(\')
-          scope: variable.other.readwrite.alan
+          scope: support.variable.alan
           captures:
             1: punctuation.definition.string.begin.alan
             2: punctuation.definition.string.end.alan
@@ -111,7 +119,7 @@ contexts:
             1: punctuation.definition.string.begin.alan
             2: punctuation.definition.string.end.alan
         - match: (\').*?(\')
-          scope: variable.other.readwrite.alan
+          scope: support.variable.alan
           captures:
             1: punctuation.definition.string.begin.alan
             2: punctuation.definition.string.end.alan
