@@ -27,7 +27,7 @@ contexts:
           pop: true
 
   translated:
-    - match: (?<=->)\s+(')(.*)(')(?:\n)
+    - match: (?<=->)\s+(')([^'"]+)(')(?:\n|\s+\))
       captures:
         1: punctuation.definition.string.begin.alan
         2: support.variable.alan
