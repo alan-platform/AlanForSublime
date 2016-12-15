@@ -92,7 +92,7 @@ contexts:
         - match: (?:\s|^)(\])(?=\s|//)
           captures:
             1: meta.brace.square punctuation.definition.array.end.alan
-        - match: ^(?=\n)
+        - match: ^(?=\n|root)
           pop: true
 
   translations:
