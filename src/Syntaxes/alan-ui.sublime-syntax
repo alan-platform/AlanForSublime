@@ -78,7 +78,7 @@ contexts:
         - match: (:)(?=\s|//)
           captures:
             1: punctuation.separator.key-value.alan
-        - match: (?:\s|^)(in frame|root view|frames|announcement|scaling|report limit|fast clicks|content selection|reload on unexpected error|accidental exit prevention|default language|application wallpaper url|application name|application creator|application brand)(?=\s|//|:)
+        - match: (?:\s|^)(in window|root view|windows|announcement|scaling|report limit|fast clicks|content selection|reload on unexpected error|accidental exit prevention|default language|application wallpaper url|application name|application creator|application brand)(?=\s|//|:)
           captures:
             1: entity.name.function.alan
         - match: (?:\s|^)(enabled|disabled)(?=\s|//)
