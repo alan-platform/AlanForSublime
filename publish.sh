@@ -3,7 +3,9 @@ set -e
 
 NOW=`date +"%Y-%m-%d %T"`
 
-zip -rq sublime.zip src
+pushd src >> /dev/null
+	zip -rq ../sublime.zip .
+popd >> /dev/null
 
 sed "s/VERSION/${CI_BUILD_TAG}/g" fabric-sublime-repository-template.json > fabric-sublime-repository-interm.json
 sed "s/DATE/${NOW}/g" fabric-sublime-repository-interm.json > fabric-sublime-repository.json

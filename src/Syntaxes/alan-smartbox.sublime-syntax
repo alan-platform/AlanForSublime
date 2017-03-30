@@ -1,0 +1,12 @@
+%YAML 1.2
+---
+# http://www.sublimetext.com/docs/3/syntax.html
+name: Alan Smartbox
+file_extensions:
+  - implementation.alan
+  - smartbox.alan
+scope: source.smartbox.alan
+
+contexts:
+  main:
+    - include: scope:source.alan

@@ -1,0 +1,12 @@
+%YAML 1.2
+---
+# http://www.sublimetext.com/docs/3/syntax.html
+name: Alan Datastore
+file_extensions:
+  - implementation.alan
+  - mapping.alan
+scope: source.datastore.alan
+
+contexts:
+  main:
+    - include: scope:source.alan

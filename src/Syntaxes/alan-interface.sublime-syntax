@@ -1,0 +1,11 @@
+%YAML 1.2
+---
+# http://www.sublimetext.com/docs/3/syntax.html
+name: Alan Interface
+file_extensions:
+  - interface.alan
+scope: source.interface.alan
+
+contexts:
+  main:
+    - include: scope:source.alan

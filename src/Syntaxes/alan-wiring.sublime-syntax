@@ -1,0 +1,11 @@
+%YAML 1.2
+---
+# http://www.sublimetext.com/docs/3/syntax.html
+name: Alan Wiring
+file_extensions:
+  - wiring.alan
+scope: source.wiring.alan
+
+contexts:
+  main:
+    - include: scope:source.alan

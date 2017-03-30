@@ -1,0 +1,12 @@
+%YAML 1.2
+---
+# http://www.sublimetext.com/docs/3/syntax.html
+name: Alan Reporter
+file_extensions:
+  - query.alan
+  - mapping.alan
+scope: source.reporter.alan
+
+contexts:
+  main:
+    - include: scope:source.alan

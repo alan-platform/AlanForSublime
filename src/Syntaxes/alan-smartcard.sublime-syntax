@@ -1,0 +1,12 @@
+%YAML 1.2
+---
+# http://www.sublimetext.com/docs/3/syntax.html
+name: Alan Smartcard
+file_extensions:
+  - implementation.alan
+  - smartcard.alan
+scope: source.smartcard.alan
+
+contexts:
+  main:
+    - include: scope:source.alan
