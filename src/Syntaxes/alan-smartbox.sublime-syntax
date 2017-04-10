@@ -5,7 +5,7 @@ name: Alan Smartbox
 file_extensions:
   - implementation.alan
   - smartbox.alan
-scope: source.smartbox.alan
+scope: source.alan source.smartbox.alan
 
 contexts:
   main:

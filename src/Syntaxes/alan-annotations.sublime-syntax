@@ -4,7 +4,7 @@
 name: Alan Annotations
 file_extensions:
   - annotations.alan
-scope: source.annotations.alan
+scope: source.alan source.annotations.alan
 
 contexts:
   main:

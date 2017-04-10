@@ -4,7 +4,7 @@
 name: Alan Deployment
 file_extensions:
   - deployment.alan
-scope: source.deployment.alan
+scope: source.alan source.deployment.alan
 
 contexts:
   main:

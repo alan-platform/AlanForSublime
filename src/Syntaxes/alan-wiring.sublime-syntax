@@ -4,7 +4,7 @@
 name: Alan Wiring
 file_extensions:
   - wiring.alan
-scope: source.wiring.alan
+scope: source.alan source.wiring.alan
 
 contexts:
   main:

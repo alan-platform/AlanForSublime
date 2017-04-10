@@ -5,7 +5,7 @@ name: Alan UI
 file_extensions:
   - ui.alan
   - control
-scope: source.ui.alan
+scope: source.alan source.ui.alan
 
 contexts:
   main:

@@ -5,7 +5,7 @@ name: Alan Datastore
 file_extensions:
   - implementation.alan
   - mapping.alan
-scope: source.datastore.alan
+scope: source.alan source.datastore.alan
 
 contexts:
   main:
