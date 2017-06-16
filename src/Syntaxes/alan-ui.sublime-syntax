@@ -10,6 +10,7 @@ scope: source.alan source.ui.alan
 contexts:
   main:
     - include: settings
+    - include: global
     - include: states
     - include: translated
     - include: translations
@@ -79,7 +80,7 @@ contexts:
         - match: (:)(?=\s|//)
           captures:
             1: punctuation.separator.key-value.alan
-        - match: (?:\s|^)(in window|root view|announcement|scaling|report limit|fast clicks|content selection|reload on unexpected error|accidental exit prevention|default language|application wallpaper url|application name|application creator|application brand|anonymous login)(?=\s|//|:)
+        - match: (?:\s|^)(announcement|scaling|report limit|fast clicks|content selection|reload on unexpected error|accidental exit prevention|default language|application wallpaper url|application name|application creator|application brand|anonymous login)(?=\s|//|:)
           captures:
             1: entity.name.function.alan
         - match: (?:\s|^)(enabled|disabled)(?=\s|//)
@@ -95,7 +96,13 @@ contexts:
             1: meta.brace.square punctuation.definition.array.end.alan
         - match: ^(?=\n|windows)
           pop: true
-
+  global:
+    - match: ^windows\b
+      scope: storage.alan
+    - match: ^root view\b
+      scope: storage.alan
+    - match: ^deeplink to\b
+      scope: storage.alan
   translations:
     - match: ^phrases\b
       scope: storage.alan

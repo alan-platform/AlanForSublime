@@ -129,7 +129,7 @@ contexts:
         1: variable.parameter.alan
 
   typical:
-    - match: ^\s*(windows|webservers|systems|system instances|settings|servers|root|roles mapping|roles|reporting|providing connections|phrases|numerical types|linked node mapping|languages|keywords|interfaces mapping|interface|external systems|dynamic users|duplication mapping|deeplink|component types|component rules)(?=\s|//)
+    - match: ^\s*(webservers|systems|system instances|settings|servers|root|roles mapping|roles|reporting|providing connections|phrases|numerical types|linked node mapping|languages|keywords|interfaces mapping|interface|external systems|dynamic users|duplication mapping|deeplink|component types|component rules)(?=\s|//)
       scope: storage.alan
     - match: (?:\s|^)(10\^|%d|trim|transform|sumlist|sum|subtract|stringify|set|product|min|max|increment|fraction|format|execute|division|count|ceil|add)(?=\s|//)
       captures:
