@@ -8,6 +8,16 @@ scope: source.alan source.mapping.alan
 
 contexts:
   main:
+    - match: //.*$
+      scope: comment.line.double-slash.alan
+    - match: /\*
+      scope: punctuation.definition.comment.alan
+      push:
+        - meta_scope: comment.block.alan
+        - match: \*/
+          scope: punctuation.definition.comment.alan
+          pop: true
+
     - match: ^(database mapping)(?=( \(|\n))
       scope: entity.name.type.alan
       push:

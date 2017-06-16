@@ -8,6 +8,16 @@ scope: source.alan source.implementation.alan
 
 contexts:
   main:
+    - match: //.*$
+      scope: comment.line.double-slash.alan
+    - match: /\*
+      scope: punctuation.definition.comment.alan
+      push:
+        - meta_scope: comment.block.alan
+        - match: \*/
+          scope: punctuation.definition.comment.alan
+          pop: true
+
     - match: ^(read interface implementation)\n
       scope: entity.name.type.alan
       push:
