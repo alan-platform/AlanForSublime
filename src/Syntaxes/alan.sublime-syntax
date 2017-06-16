@@ -4,8 +4,6 @@
 name: Alan
 file_extensions:
   - alan
-  - schema
-  - grammar
 scope: source.alan
 contexts:
   main:

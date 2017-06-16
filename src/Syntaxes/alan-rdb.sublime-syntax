@@ -3,7 +3,6 @@
 # http://www.sublimetext.com/docs/3/syntax.html
 name: Alan Relational Database
 file_extensions:
-  - mapping.alan
   - database.alan
 scope: source.alan source.rdb.alan
 

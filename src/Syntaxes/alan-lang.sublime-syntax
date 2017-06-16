@@ -3,8 +3,8 @@
 # http://www.sublimetext.com/docs/3/syntax.html
 name: Alan Lang
 file_extensions:
-  - grammar
-  - schema
+  - grammar.alan
+  - schema.alan
 scope: source.alan source.lang.alan
 contexts:
   main:

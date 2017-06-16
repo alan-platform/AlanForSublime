@@ -1,0 +1,28 @@
+%YAML 1.2
+---
+# http://www.sublimetext.com/docs/3/syntax.html
+name: Alan Implementations
+file_extensions:
+  - implementation.alan
+scope: source.alan source.implementation.alan
+
+contexts:
+  main:
+    - match: ^(read interface implementation)\n
+      scope: entity.name.type.alan
+      push:
+        - meta_scope: source.datastore.alan
+        - include: scope:source.alan
+
+    - match: ^(context values)\n
+      scope: entity.name.type.alan
+      push:
+        - meta_scope: source.smartbox.alan
+        - include: scope:source.alan
+
+    - match: ^(implement engine)\n
+      scope: entity.name.type.alan
+      push:
+        - meta_scope: source.smartcard.alan
+        - include: scope:source.alan
+
