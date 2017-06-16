@@ -60,12 +60,13 @@ contexts:
           pop: true
 
   states:
-    - match: (?:^\s+)(\')([^']+)(\')\s+(?=\()
+    - match: (?:^\s+)(\')([^']+)(\')\s+(\()
       scope: meta.state.alan
       captures:
         1: punctuation.definition.string.begin.alan
         2: support.class.alan
         3: punctuation.definition.string.end.alan
+        4: meta.brace.round punctuation.definition.parameters.begin.alan
 
   settings:
     - match: ^settings\b
