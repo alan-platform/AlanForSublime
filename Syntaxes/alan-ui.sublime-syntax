@@ -11,6 +11,7 @@ contexts:
   main:
     - include: settings
     - include: global
+    - include: root_step
     - include: states
     - include: translated
     - include: translations
@@ -96,6 +97,7 @@ contexts:
             1: meta.brace.square punctuation.definition.array.end.alan
         - match: ^(?=\n|windows)
           pop: true
+
   global:
     - match: ^windows\b
       scope: storage.alan
@@ -103,6 +105,11 @@ contexts:
       scope: storage.alan
     - match: ^deeplink to\b
       scope: storage.alan
+
+  root_step:
+    - match: (?:\s)root(?=\s)
+      scope: variable.parameter.alan
+
   translations:
     - match: ^phrases\b
       scope: storage.alan
