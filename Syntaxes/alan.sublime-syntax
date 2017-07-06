@@ -8,6 +8,8 @@ scope: source.alan
 contexts:
   main:
     - include: comments
+    - include: symbols
+    - include: commands
     - include: strings
     - include: translations
     - include: braces
@@ -29,6 +31,41 @@ contexts:
         - match: \*/
           scope: punctuation.definition.comment.alan
           pop: true
+
+  symbols:
+    - match: |-
+          (?x:
+            (')([a-zA-Z -_]+)(')
+            (?=
+              \s+->\s+
+              (text|stategroup|number|natural|matrix|integer|file|dictionary)\s+
+              [(']
+            )
+          )
+      scope: meta.symbol.alan
+      captures:
+        1: punctuation.definition.string.begin.alan
+        2: string.quoted.single
+        3: punctuation.definition.string.begin.alan
+
+  commands:
+    - match: (')([a-zA-Z -_]+)(')\s+(->)\s+(command)
+      captures:
+        1: punctuation.definition.string.begin.alan
+        2: string.quoted.single
+        3: punctuation.definition.string.begin.alan
+        4: punctuation.separator.key-value.alan
+        5: entity.name.function.alan
+      push:
+        - meta_scope: meta.function.parameters.alan
+        - match: implementation
+          scope: entity.name.function.alan
+          pop: true
+        - match: (?:\s|^)(text|stategroup|number|natural|matrix|integer|file|dictionary)(?=\s|//|:)
+          scope: support.function.alan
+        - include: strings
+        - include: braces
+        - include: punctuation
 
   strings:
     - match: '"'
