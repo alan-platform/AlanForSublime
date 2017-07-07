@@ -14,7 +14,7 @@ contexts:
     - include: root_step
     - include: states
     - include: translated
-    - include: translations
+    - include: doublestrings
     - include: scope:source.alan
 
   comments:
@@ -32,7 +32,7 @@ contexts:
     - match: (?<=->)\s+(')([^'"]+)(')(?:\n|\s+\))
       captures:
         1: punctuation.definition.string.begin.alan
-        2: support.variable.alan
+        2: markup.raw.inline.alan string.quoted.single.alan
         3: punctuation.definition.string.begin.alan
 
   doublestrings:
@@ -40,23 +40,10 @@ contexts:
       captures:
         0: punctuation.definition.string.begin.alan
       push:
-        - meta_scope: string.quoted.double.alan
+        - meta_scope: markup.raw.inline.alan string.quoted.double.alan
         - match: \\.
           scope: constant.character.escape.alan
         - match: '"'
-          captures:
-            0: punctuation.definition.string.end.alan
-          pop: true
-
-  singlestrings:
-    - match: "'"
-      captures:
-        0: punctuation.definition.string.begin.alan
-      push:
-        - meta_scope: string.quoted.single.alan
-        - match: \\.
-          scope: constant.character.escape.alan
-        - match: "'"
           captures:
             0: punctuation.definition.string.end.alan
           pop: true
@@ -109,38 +96,3 @@ contexts:
   root_step:
     - match: (?:\s)root(?=\s)
       scope: variable.parameter.alan
-
-  translations:
-    - match: ^phrases\b
-      scope: storage.alan
-      push:
-        - meta_scope: phrases.block.alan
-        - include: comments
-        - match: (\').*?(\')
-          scope: support.variable.alan
-          captures:
-            1: punctuation.definition.string.begin.alan
-            2: punctuation.definition.string.end.alan
-        - match: ^(?=\n|languages)
-          pop: true
-    - match: ^languages\b
-      scope: storage.alan
-      push:
-        - meta_scope: languages.block.alan
-        - include: comments
-        - match: (\').*?(\')(?:\n)
-          scope: storage.type.alan
-          captures:
-            1: punctuation.definition.string.begin.alan
-            2: punctuation.definition.string.end.alan
-        - match: (\').*?(\')
-          scope: support.variable.alan
-          captures:
-            1: punctuation.definition.string.begin.alan
-            2: punctuation.definition.string.end.alan
-        - match: (?:\s|^)(->)(?=\s|//)
-          captures:
-            1: punctuation.separator.key-value.alan
-        - include: doublestrings
-        - match: ^\n
-          pop: true
