@@ -2,7 +2,7 @@
 ---
 # http://www.sublimetext.com/docs/3/syntax.html
 name: Alan Build
-scope: source.alan source.build.alan
+scope: source.build.alan
 contexts:
   main:
     - match: '^\[.*\]$'
