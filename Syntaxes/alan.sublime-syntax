@@ -37,7 +37,7 @@ contexts:
           (?x:
             (')([a-zA-Z -_]+)(')
             (?=
-              \s+->\s+
+              \s+(?:->|~>)\s+
               (text|stategroup|number|natural|matrix|integer|file|dictionary)\s+
               [(']
             )
