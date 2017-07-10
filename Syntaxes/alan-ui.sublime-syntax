@@ -48,6 +48,19 @@ contexts:
             0: punctuation.definition.string.end.alan
           pop: true
 
+  singlestrings:
+      - match: "'"
+        captures:
+          0: punctuation.definition.string.begin.alan
+        push:
+          - meta_scope: string.quoted.single.alan
+          - match: \\.
+            scope: constant.character.escape.alan
+          - match: "'"
+            captures:
+              0: punctuation.definition.string.end.alan
+            pop: true
+
   states:
     - match: (?:^\s+)(\')([^']+)(\')\s+(\()
       scope: meta.state.alan
