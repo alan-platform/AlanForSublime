@@ -9,7 +9,6 @@ contexts:
   main:
     - include: comments
     - include: symbols
-    - include: commands
     - include: strings
     - include: translations
     - include: braces
@@ -33,39 +32,11 @@ contexts:
           pop: true
 
   symbols:
-    - match: |-
-          (?x:
-            (')([a-zA-Z -_]+)(')
-            (?=
-              \s+(?:->|~>)\s+
-              (text|stategroup|number|natural|matrix|integer|file|dictionary)\s+
-              [(']
-            )
-          )
-      scope: meta.symbol.alan
+    - match: ^\s*(')([^']+)(')(?=(?:\s+(mutation|read)\s+requires\s+'[^']+')*\s+(->|~>)\s+(text|stategroup|reference|natural|matrix|integer|group|file|dictionary|command))
       captures:
         1: punctuation.definition.string.begin.alan
-        2: string.quoted.single
-        3: punctuation.definition.string.begin.alan
-
-  commands:
-    - match: (')([a-zA-Z -_]+)(')\s+(->)\s+(command)
-      captures:
-        1: punctuation.definition.string.begin.alan
-        2: string.quoted.single
-        3: punctuation.definition.string.begin.alan
-        4: punctuation.separator.key-value.alan
-        5: entity.name.function.alan
-      push:
-        - meta_scope: meta.function.parameters.alan
-        - match: implementation
-          scope: entity.name.function.alan
-          pop: true
-        - match: (?:\s|^)(text|stategroup|number|natural|matrix|integer|file|dictionary)(?=\s|//|:)
-          scope: support.function.alan
-        - include: strings
-        - include: braces
-        - include: punctuation
+        2: string.quoted.single.alan meta.symbol.alan
+        3: punctuation.definition.string.end.alan
 
   strings:
     - match: '"'
