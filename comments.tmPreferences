@@ -4,7 +4,7 @@
 	<key>name</key>
 	<string>Alan Comments</string>
 	<key>scope</key>
-	<string>source.alan</string>
+	<string>source.alan, source.ui.alan</string>
 	<key>settings</key>
 	<dict>
 		<key>shellVariables</key>
