@@ -10,7 +10,6 @@ contexts:
     - include: comments
     - include: symbols
     - include: strings
-    - include: translations
     - include: braces
     - include: risky
     - include: constants
