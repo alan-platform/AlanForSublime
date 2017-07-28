@@ -138,7 +138,7 @@ contexts:
         1: variable.parameter.alan
 
   typical:
-    - match: ^\s*(webservers|systems|system instances|settings|servers|root|roles mapping|roles|reporting|providing connections|phrases|package dependencies|package|numerical types|linked node mapping|languages|keywords|issue channels|interfaces mapping|interface|generator|generate code|external systems|enable persistent storage for|duplication mapping|deeplink|configurations|component types|component rules|build dependencies|bash)(?=\s|//)
+    - match: ^\s*(webservers|systems|system instances|settings|servers|root|roles mapping|roles|reporting|providing connections|projects|phrases|package dependencies|package|numerical types|linked node mapping|languages|keywords|issue channels|interfaces mapping|interface|generator|generate code|external systems|enable persistent storage for|duplication mapping|deeplink|configurations|component types|component rules|build dependencies|bash)(?=\s|//)
       scope: storage.alan
     - match: (?:\s|^)(10\^|%d|trim|transform|sumlist|sum|subtract|stringify|std|set|product|path|min|max|increment|from|fraction|format|execute|empty|division|diff|count|ceil|add)(?=\s|//)
       captures:
