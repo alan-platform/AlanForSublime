@@ -5,5 +5,8 @@
 	"syntax": "Packages/Fabric Sublime Syntax/Syntaxes/build.sublime-syntax",
 	"quiet": false,
 	"shell": true,
-	"cmd": "fabric validate sublime --wire"
+	"cmd": "fabric validate sublime --wire",
+	"windows": {
+		"cmd": "bash -c \"fabric validate sublime --wire\""
+	}
 }
