@@ -6,7 +6,7 @@
 - Make sure packagecontrol has been installed
 - Open command palette (ctrl-shift-p)
 - Choose "Add repository"
-- Enter "http://m-industries.com/sublime/fabric-sublime-repository.json"
+- Enter "https://m-industries.com/sublime/fabric-sublime-repository.json"
 - You can now open the command palette and run "Install Package" and select "Fabric Sublime Syntax"
 
 The package will be updated automatically.
