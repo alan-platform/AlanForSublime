@@ -8,7 +8,7 @@
 				{
 					"version": "VERSION",
 					"date": "DATE",
-					"url": "http://m-industries.com/sublime/sublime.zip",
+					"url": "https://m-industries.com/sublime/sublime.zip",
 					"sublime_text": ">=3100"
 				}
 			]
