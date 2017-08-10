@@ -31,8 +31,9 @@ contexts:
   translated:
     - match: (?<=->)\s+(')([^'"]+)(')(?:\n|\s+\))
       captures:
+        0: string.quoted.single.alan
         1: punctuation.definition.string.begin.alan
-        2: markup.raw.inline.alan string.quoted.single.alan
+        2: markup.raw.inline.alan
         3: punctuation.definition.string.begin.alan
 
   doublestrings:
@@ -40,7 +41,8 @@ contexts:
       captures:
         0: punctuation.definition.string.begin.alan
       push:
-        - meta_scope: markup.raw.inline.alan string.quoted.double.alan
+        - meta_scope: string.quoted.double.alan
+        - meta_content_scope: markup.raw.inline.alan
         - match: \\.
           scope: constant.character.escape.alan
         - match: '"'
