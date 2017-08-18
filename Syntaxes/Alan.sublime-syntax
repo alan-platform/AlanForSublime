@@ -114,9 +114,12 @@ contexts:
     - match: (?:\s|^)(<=|=|>=|==|&&)(?=\s|//)
       captures:
         1: keyword.operator.comparison.alan
-    - match: (?:\s|^)(::|:|->|~>|<-|<~)(?=\s|//)
+    - match: (?:\s|^)(->|=>|~>|<-|<~)(?=\s|//)
       captures:
         1: punctuation.separator.key-value.alan
+    - match: (?:\s|^)(::|:)(?=\s|//)
+      captures:
+        1: punctuation.section.function.begin.alan
 
   numbers:
     - match: \b(integer|number|natural)\b
