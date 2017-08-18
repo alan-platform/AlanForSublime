@@ -2,7 +2,7 @@
 	"schema_version": "3.0.0",
 	"packages": [
 		{
-			"name": "Alan",
+			"name": "Fabric Sublime Syntax",
 			"details": "https://github.com/M-industries/fabric-sublime-syntax",
 			"releases": [
 				{

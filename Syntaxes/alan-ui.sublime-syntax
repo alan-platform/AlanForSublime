@@ -13,6 +13,8 @@ contexts:
     - include: global
     - include: root_step
     - include: states
+    - include: translated
+    - include: doublestrings
     - include: scope:source.alan
 
   comments:
@@ -25,6 +27,41 @@ contexts:
         - match: \*/
           scope: punctuation.definition.comment.alan
           pop: true
+
+  translated:
+    - match: (?<=->)\s+(')([^'"]+)(')(?:\n|\s+\))
+      captures:
+        0: string.quoted.single.alan
+        1: punctuation.definition.string.begin.alan
+        2: markup.raw.inline.alan
+        3: punctuation.definition.string.begin.alan
+
+  doublestrings:
+    - match: '"'
+      captures:
+        0: punctuation.definition.string.begin.alan
+      push:
+        - meta_scope: string.quoted.double.alan
+        - meta_content_scope: markup.raw.inline.alan
+        - match: \\.
+          scope: constant.character.escape.alan
+        - match: '"'
+          captures:
+            0: punctuation.definition.string.end.alan
+          pop: true
+
+  singlestrings:
+      - match: "'"
+        captures:
+          0: punctuation.definition.string.begin.alan
+        push:
+          - meta_scope: string.quoted.single.alan
+          - match: \\.
+            scope: constant.character.escape.alan
+          - match: "'"
+            captures:
+              0: punctuation.definition.string.end.alan
+            pop: true
 
   states:
     - match: (?:^\s+)(\')([^']+)(\')\s+(\()
