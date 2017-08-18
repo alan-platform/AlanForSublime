@@ -1,11 +1,14 @@
 #!/bin/bash
 set -e
 
-NOW=`date +"%Y-%m-%d %T"`
+NOW=$(date +"%Y-%m-%d %T")
 
 zip -rq sublime.zip Syntaxes
 zip -rq sublime.zip comments.tmPreferences
 zip -rq sublime.zip indent.tmPreferences
+zip -rq sublime.zip Fabric\ Validate.sublime-build
+zip -rq sublime.zip Symbol\ List.tmPreferences
+zip -rq sublime.zip Symbol\ List\ Banned.tmPreferences
 
 sed "s/VERSION/${CI_BUILD_TAG}/g" fabric-sublime-repository-template.json > fabric-sublime-repository-interm.json
 sed "s/DATE/${NOW}/g" fabric-sublime-repository-interm.json > fabric-sublime-repository.json
