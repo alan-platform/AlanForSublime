@@ -38,6 +38,11 @@ contexts:
         3: punctuation.definition.string.end.alan
 
   strings:
+    - match: (')([^']+(?:\.alan|\.lib))(')
+      captures:
+        1: punctuation.definition.string.begin.alan
+        2: variable.other.alan
+        3: punctuation.definition.string.end.alan
     - match: '"'
       captures:
         0: punctuation.definition.string.begin.alan
