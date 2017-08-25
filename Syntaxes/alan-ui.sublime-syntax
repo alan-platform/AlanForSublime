@@ -9,59 +9,19 @@ scope: source.ui.alan
 
 contexts:
   main:
-    - include: settings
     - include: global
     - include: root_step
     - include: states
     - include: scope:source.alan
 
-  comments:
-    - match: //.*$
-      scope: comment.line.double-slash.alan
-    - match: /\*
-      scope: punctuation.definition.comment.alan
-      push:
-        - meta_scope: comment.block.alan
-        - match: \*/
-          scope: punctuation.definition.comment.alan
-          pop: true
-
   states:
-    - match: (?:^\s+)(\')([^']+)(\')\s+(\()
+    - match: ^\s*(\-)\s+(')([^']+)(')
       scope: meta.state.alan
       captures:
-        1: punctuation.definition.string.begin.alan
-        2: support.class.alan
-        3: punctuation.definition.string.end.alan
-        4: meta.brace.round punctuation.definition.parameters.begin.alan
-
-  settings:
-    - match: ^settings\b
-      scope: storage.alan
-      push:
-        - meta_scope: settings.block.alan
-        - include: comments
-        - include: singlestrings
-        - include: doublestrings
-        - match: (:)(?=\s|//)
-          captures:
-            1: punctuation.separator.key-value.alan
-        - match: (?:\s|^)(announcement|scaling|report limit|fast clicks|content selection|reload on unexpected error|accidental exit prevention|default language|application wallpaper url|application name|application creator|application brand|anonymous login)(?=\s|//|:)
-          captures:
-            1: entity.name.function.alan
-        - match: (?:\s|^)(enabled|disabled)(?=\s|//)
-          captures:
-            1: constant.language.boolean.alan
-        - match: \b[0-9]+(?=\s|//)
-          scope: constant.numeric.alan
-        - match: (?:\s|^)(\[)(?=\s|//)
-          captures:
-            1: meta.brace.square punctuation.definition.array.begin.alan
-        - match: (?:\s|^)(\])(?=\s|//)
-          captures:
-            1: meta.brace.square punctuation.definition.array.end.alan
-        - match: ^(?=\n|windows)
-          pop: true
+        1: punctuation.definition.list.alan
+        2: punctuation.definition.string.begin.alan
+        3: entity.name.state.alan
+        4: punctuation.definition.string.end.alan
 
   global:
     - match: ^windows\b
