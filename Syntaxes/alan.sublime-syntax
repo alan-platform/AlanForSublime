@@ -33,6 +33,7 @@ contexts:
   symbols:
     - match: ^\s*(')([^']+)(')(?=(?:\s+(mutation|read)\s+requires\s+'[^']+')*\s+(->|~>)\s+(text|stategroup|reference|natural|matrix|integer|group|file|dictionary|command))
       captures:
+        0: string.quoted.single.alan
         1: punctuation.definition.string.begin.alan
         2: string.quoted.single.alan meta.symbol.alan
         3: punctuation.definition.string.end.alan
@@ -40,6 +41,7 @@ contexts:
   strings:
     - match: (')([^']+(?:\.alan|\.lib))(')
       captures:
+        0: string.quoted.single.alan
         1: punctuation.definition.string.begin.alan
         2: variable.other.alan
         3: punctuation.definition.string.end.alan
