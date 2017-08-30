@@ -31,12 +31,12 @@ contexts:
           pop: true
 
   symbols:
-    - match: ^\s*(')([^']+)(')(?=(?:\s+(mutation|read)\s+requires\s+'[^']+')*\s+(->|~>)\s+(text|stategroup|reference|natural|matrix|integer|group|file|dictionary))
+    - match: ^\s*((')([^']+)('))(?=(?:\s+(mutation|read)\s+requires\s+'[^']+')*\s+(->|~>)\s+(text|stategroup|reference|natural|matrix|integer|group|file|dictionary))
       captures:
-        0: string.quoted.single.alan
-        1: punctuation.definition.string.begin.alan
-        2: string.quoted.single.alan meta.symbol.alan
-        3: punctuation.definition.string.end.alan
+        1: string.quoted.single.alan
+        2: punctuation.definition.string.begin.alan
+        3: string.quoted.single.alan meta.symbol.alan
+        4: punctuation.definition.string.end.alan
 
   strings:
     - match: (')([^']+(?:\.alan|\.lib))(')
