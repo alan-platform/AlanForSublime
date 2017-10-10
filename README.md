@@ -1,4 +1,4 @@
-# Fabric syntax highlighting for Sublime Text
+# Fabric for Sublime Text
 
 Provides support for Fabric projects with:
 - Build systems
