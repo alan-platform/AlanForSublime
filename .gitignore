@@ -1,6 +1,4 @@
-# IDE, logging and other ignores
 /*.sublime-workspace
-/*.zip
 /.DS_Store
 .#*
 \#*#
@@ -8,7 +6,3 @@
 /.projectile
 /.tscache
 /.vscode
-/node_modules
-/npm-debug.log
-.sublime-grunt.cache
-/tools
