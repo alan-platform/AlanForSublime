@@ -14,7 +14,6 @@ contexts:
     - include: risky
     - include: constants
     - include: punctuation
-    - include: numbers
     - include: steps
     - include: typical
     - include: catch-all
@@ -29,14 +28,10 @@ contexts:
         - match: \*/
           scope: punctuation.definition.comment.alan
           pop: true
-
-  symbols:
-    - match: ^\s*((')([^']+)('))(?=(?:\s+(mutation|read)\s+requires\s+'[^']+')*\s+(->|~>)\s+(text|stategroup|reference|natural|matrix|integer|group|file|dictionary))
+    - match: (#)(\S+)
       captures:
-        1: string.quoted.single.alan
-        2: punctuation.definition.string.begin.alan
-        3: string.quoted.single.alan meta.symbol.alan
-        4: punctuation.definition.string.end.alan
+        0: meta.annotation.alan support.function.builtin.alan
+        1: punctuation.definition.annotation.alan
 
   strings:
     - match: (')([^']+(?:\.alan|\.lib))(')
@@ -82,26 +77,24 @@ contexts:
         1: meta.brace.square punctuation.definition.array.end.alan
     - match: (?:\s|^)(\{{)(?=\s|//)
       captures:
-        1: meta.brace.curly punctuation.definition.parameters.begin.alan
+        1: meta.brace.curly punctuation.definition.block.begin.alan
     - match: (?:\s|^)(\}})(?=\s|//)
       captures:
-        1: meta.brace.curly punctuation.definition.array.end.alan
+        1: meta.brace.curly punctuation.definition.block.end.alan
     - match: (?:\s|^)(\{)(?=\s|//)
       captures:
-        1: meta.brace.curly punctuation.definition.parameters.begin.alan
+        1: meta.brace.curly punctuation.definition.block.begin.alan
     - match: (?:\s|^)(\})(?=\s|//)
       captures:
-        1: meta.brace.curly punctuation.definition.array.end.alan
+        1: meta.brace.curly punctuation.definition.block.end.alan
     - match: (?:\s|^)(\(|\~\(|\.\(|\.\^\(|\>\(|\+\(|\:\(|\%\^\(|\%\(|\+\^\(|\?\^\(|\}\()(?=\s|//)
       captures:
-        1: meta.brace.round punctuation.definition.parameters.begin.alan
+        1: meta.brace.round punctuation.definition.block.begin.alan
     - match: (?:\s|^)(\))(?=\s|//)
       captures:
-        1: meta.brace.round punctuation.definition.parameters.end.alan
+        1: meta.brace.round punctuation.definition.block.end.alan
 
   risky:
-    - match: \bFIXME\b
-      scope: invalid
     - match: (?:\s|^)(<!)(?=\s|//)
       captures:
         1: invalid punctuation.definition.unsafe.begin.alan
@@ -113,56 +106,46 @@ contexts:
           pop: true
 
   constants:
-    - match: \bzero|one|[0-9]+(?=\s|//)
+    - match: \b[0-9]+(?=\s|//)
       scope: constant.numeric.alan
     - match: \bMonday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday\b
       scope: constant.language.alan
     - match: \[\.exe\]
       scope: constant.language.alan
-    - match: \b(yes|no|enabled|disabled)\b
+    - match: \b(zero|one|yes|no|enabled|disabled|true|false)\b
       scope: constant.language.boolean.alan
 
   punctuation:
     - match: (?:\s|^)(<=|=|>=|==|&&)(?=\s|//)
       captures:
         1: keyword.operator.comparison.alan
-    - match: (?:\s|^)(->|=>|~>|<-|<~)(?=\s|//)
+    - match: (?:\s|^|\B)(::|:|->|=>|~>|<-|<~)(?=\s|//)
       captures:
         1: punctuation.separator.key-value.alan
-    - match: (?:\s|^|\B)(::|:)(?=\s|//)
-      captures:
-        1: punctuation.separator.key-value.alan
-
-  numbers:
-    - match: \b(integer|number|natural)\b
-      captures:
-        0: support.function.alan
-      push:
-        - meta_scope: meta.comment
-        - include: steps
-        - match: (\').*?(\')
-          scope: string.interpolated.alan # string literal?
-          captures:
-            1: punctuation.definition.string.begin.alan
-            2: punctuation.definition.string.end.alan
-          pop: true
+    - match: (,)
+      scope: punctuation.separator.comma.alan
 
   steps:
-    - match: (?:\s|^)(\`|\^|\@\?\^|\@\%\^|\@|\?\^|\?\?\^|\?|\?\||\>|\<|\>\>|\<\<|\/|\.\}|\.\^|\.\>|\.\.\.|\.|\-\-|\-|\,|\+\^|\+|\*\*|\*\&\#|\*\&|\*|!\&|\&\^|\&\&|\&|\%\}|\%\^|\%|\$\^|\$|\#|~|\!|\|)(?=\s)
+    - match: ([>\*\|\^\?\#-])+
       captures:
-        1: variable.parameter.alan
+        0: keyword.operator.alan
+    - match: (\.)
+      captures:
+        0: punctuation.accessor.alan
+    - match: \$
+      scope: variable.language.alan
 
   typical:
-    - match: ^\s*(webservers|systems|system instances|settings|servers|root|roles mapping|roles|reporting|providing connections|projects|phrases|package dependencies|package|numerical types|linked node mapping|languages|keywords|issue channels|interfaces mapping|interface|generator|generate code|external systems|enable persistent storage for|duplication mapping|deeplink|configurations|component types|component rules|build dependencies|bash)(?=\s|//)
-      scope: storage.alan
-    - match: (?:\s|^)(10\^|%d|trim|transform|sumlist|sum|subtract|stringify|std|set|product|path|min|max|increment|from|fraction|format|execute|empty|division|diff|count|ceil|add)(?=\s|//)
-      captures:
-        1: keyword.operator.math.alan
-
-  catch-all:
-    - match: (?:\s|^)(writable|workfor|without|with|window|widget|where|Wednesday|webservers|webserver|wallpaper|views|view|version|verified|value|UTC|using|users|user|url|updater|update|unsubscribe|unique|unexpected|unconstrained|UID|types|type|type|Tuesday|true|trim|token|today|to|timezone|timer|time|Thursday|then|templates|TEMP2|TEMP|tags|tag|tables|table|system-type|systems|system|switchable|switch|supported|Sunday|sumlist|sum|success|subtract|substring|subscription|subscribe|stringify|strategy|str|store|storage|stopwatch|sticky|std|static|state|state|startswith|start|space|sort|socket|small|single|shared|setto|settings|set|servers|separator|separate|selection|selection|selected|select|seconds|schedule|scaling|Saturday|runenv|root|roles|role|resolvable|requires|request|reports|reporting|report|rename|remove|remainder|reload|relative|regexp|refresh|referencer|record|read|rate|query|proxy|providing|provides|provide|protocol|property|project|product|primary|prevention|preceding|power|port|plural|placeholder|phrases|persistent|pcsc|path|password|parameters|parameter|panic|overview|outputs|out|ordered|or|operator|open|ontimeout|on|of|numerical|nullable|now|not|none|node|new|never|namespace|name|mutation|multi-line|Monday|models|model|minutes|min|migration|metadata|merge|max|markup|mapping|map|login|log|loader|load|list|linker|linked|link|limit|limit|lifetime|length|languages/|languages|language|label|keys|keyboard|key|key|join|JOIN|issue|invoke|invocation|invalidate|interval|internal|interfaces|interface|instruction|instances|instance|inputs|input|inlined|inline|initialize|initialization|initial|index|indent|increment|include|in|implicit|implementation|implement|ignore|if|id|hours|hour|hidden|hash|hack|guid|graph|generator|from|Friday|frames|frame|forwards|forward|foreign|for|floor|float|flatten|flags|FIXME|first|fingerprint|find|filter|filename|file name|fields|fast|false|failure|factor|fabric|external|extension|exposes|expose|experimental|exit|EXISTS|execute|every|event|errors|error|equals|enum|entry|entity|enriched|enrich|engine|enable|empty|email|else|dynamic|duration|duration|duplicate|dormant|division|dist|diff|devenv|desired|description|descending|desc|derived|deprecated|deployments|depends|denseness|delete|default|default|decimal|day|datetime|date|database|custom|current|creator|creation|created|create|count|copy|convert|control|context|content|contains|consumes|consume|constrain|connections|connection|configuration|concat|compiler|command|columns|clicks|checkpoint|channels|ceil|causal|cast|candidates|candidate|build|buckets|brand|branch|boolean|blinking|binding|bidirectional|base|autoincrement|auto|ATR|at|ascending|as|application|any|anonymous|announcement|and|anchor|allow|aggregate|administrator|admin|add|acyclic|accidental|.self|$package|$deployed)(?=\s|//|:)
+    - match: (?:\s|^)(webservers|systems|system instances|settings|servers|root|roles mapping|roles|reporting|providing connections|projects|phrases|package dependencies|package|numerical types|numerical-types|linked node mapping|linear-graph|languages|keywords|issue channels|inverse|interfaces mapping|interface|generator|generate code|external systems|enable persistent storage for|duplication mapping|deeplink|configurations|component types|component rules|build dependencies|bash)(?=\b|//)
+      scope: storage.type.alan
+    - match: (?:\s|^)(10\^|%d|trim|transform|switch|sumlist|sum|subtract|stringify|std|set|round|product|path|min|max|match|increment|from|fraction|format|execute|empty|division|diff|count|ceil|add)(?=\s|//)
       captures:
         1: entity.name.function.alan
-    - match: (?:\s|^)(variable|text|transformation|stategroup|sparsematrix|reference|number|natural|matrix|integer|group|file|dictionary|densematrix|component|collection|argument)(?=\s|//|:)
+
+  catch-all:
+    - match: (?:\s|^)(writable|write|workfor|without|with|window|widget|where|Wednesday|webservers|webserver|wallpaper|views|view|version|verified|value|UTC|using|users|user|url|updater|update|unsubscribe|unique|unexpected|unconstrained|UID|types|type|type|Tuesday|trim|token|today|to|timezone|timer|time|Thursday|then|templates|TEMP2|TEMP|tags|tag|tables|table|system-type|systems|system|switchable|switch|supported|Sunday|sumlist|sum|success|subtract|substring|subscription|subscribe|stringify|strategy|str|store|storage|stopwatch|sticky|std|static|state|state|startswith|start|space|sort|socket|small|single|shared|setto|settings|set|servers|separator|separate|selection|selection|selected|select|seconds|schedule|scaling|Saturday|runenv|roles|role|resolvable|requires|request|reports|reporting|report|rename|remove|remainder|reload|relative|regexp|refresh|referencer|record|read|rate|query|proxy|providing|provides|provide|protocol|property|project|product|primary|prevention|preceding|power|port|plural|placeholder|phrases|persistent|pcsc|path|password|parameters|parameter|panic|overview|outputs|out|ordered|or|operator|open|ontimeout|on|of|numerical|nullable|now|not|none|node|new|never|namespace|name|mutation|multi-line|Monday|models|model|minutes|min|migration|metadata|merge|max|markup|mapping|map|login|log|loader|load|list|linker|linked|link|limit|limit|lifetime|length|languages/|languages|language|label|keys|keyboard|key|key|join|JOIN|issue|invoke|invocation|invalidate|interval|internal|interfaces|interface|instruction|instances|instance|inputs|input|inlined|inline|initialize|initialization|initial|index|indent|increment|include|in|implicit|implementation|implement|ignore|if|id|hours|hour|hidden|hash|hack|guid|graph|generator|from|Friday|frames|frame|forwards|forward|foreign|for|floor|float|flatten|flags|FIXME|first|fingerprint|find|filter|filename|file name|fields|fast|failure|factor|fabric|external|extension|exposes|expose|experimental|exit|EXISTS|execute|every|event|errors|error|equals|enum|entry|entity|enriched|enrich|engine|enable|empty|email|else|dynamic|duration|duration|duplicate|dormant|division|dist|diff|devenv|desired|description|descending|desc|derived|deprecated|deployments|depends|denseness|delete|default|default|decimal|day|datetime|date|database|custom|current|creator|creation|created|create|count|copy|convert|control|context|content|contains|consumes|consume|constrain|connections|connection|configuration|concat|compiler|command|columns|clicks|checkpoint|channels|ceil|causal|cast|candidates|candidate|build|buckets|brand|branch|boolean|blinking|binding|bidirectional|base|autoincrement|auto|ATR|at|ascending|as|application|any|anonymous|announcement|and|anchor|allow|aggregate|administrator|admin|add|acyclic|accidental|.self|$package|$deployed)(?=\s|//|:)
       captures:
         1: support.function.alan
+    - match: (?:\s|^)(variable|text|transformation|stategroup|sparsematrix|reference|number|natural|matrix|integer|group|file|dictionary|densematrix|component|collection|argument)(?=\s|//|:)
+      captures:
+        1: entity.name.type.alan
