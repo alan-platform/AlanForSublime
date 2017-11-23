@@ -129,7 +129,7 @@ contexts:
     - match: ([<>\*\|\^\-])+
       captures:
         0: keyword.operator.alan
-    - match: ([\.?\#%\+])
+    - match: ([\.?\#%\+&]+)
       captures:
         0: punctuation.accessor.alan
     - match: \$
