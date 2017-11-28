@@ -137,7 +137,7 @@ contexts:
 
   typical:
     - match: (?:\s|^)(webservers|users|systems|system instances|settings|servers|root|roles mapping|roles|reporting|providing connections|projects|phrases|package dependencies|package|numerical types|numerical-types|linked node mapping|languages|keywords|issue channels|inverse|interfaces mapping|interface|generator|generate code|external systems|enable persistent storage for|duplication mapping|deeplink|configurations|component types|component rules|build dependencies|bash)(?=\b|//)
-      scope: storage.type.alan
+      scope: entity.name.type.alan
     - match: (?:\s|^)(10\^|%d|trim|transform|switch|sumlist|sum|subtract|stringify|std|set|round|product|path|min|max|match|increment|from|fraction|format|execute|empty|division|diff|count|ceil|add)(?=\s|//)
       captures:
         1: entity.name.function.alan
@@ -148,4 +148,4 @@ contexts:
         1: support.function.alan
     - match: (?:\s|^)(variable|text|transformation|stategroup|sparsematrix|reference|number|natural|matrix|integer|group|file|dictionary|densematrix|component|collection|argument)(?=\s|//|:)
       captures:
-        1: entity.name.type.alan
+        1: storage.type.alan
