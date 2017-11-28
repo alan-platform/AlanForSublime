@@ -1,0 +1,11 @@
+Fabric for Sublime Text
+=============================
+
+Provides syntax highlighting for Fabric projects and .alan files.
+
+For more info or to report issues:
+https://github.com/M-industries/FabricForSublime
+
+To enable the Fabric Validate build systems, please add the fabric utility
+script (and its tools folder) to your $PATH:
+https://github.com/M-industries/FabricProjectTemplate/wiki/Command-Line-Utility
