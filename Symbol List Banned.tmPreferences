@@ -4,7 +4,7 @@
 	<key>name</key>
 	<string>Symbol List Banned</string>
 	<key>scope</key>
-	<string>entity.name.function.alan, entity.name.type.alan</string>
+	<string>entity.name.function.alan</string>
 	<key>settings</key>
 	<dict>
 		<key>showInIndexedSymbolList</key>
