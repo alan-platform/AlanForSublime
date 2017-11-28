@@ -6,10 +6,16 @@
 	"quiet": false,
 	"shell": true,
 	"cmd": "bash -c \"fabric validate sublime --wire\"",
+	"windows": {
+		"cmd": "bash -c \"fabric validate sublime --wire 2>&1 | sed -e 's/^\\/mnt\\/\\([a-z]\\)/\\1:/g'\""
+	},
 	"variants": [
 		{
 			"name": "Without Wiring",
-			"cmd": "bash -c \"fabric validate sublime\""
+			"cmd": "bash -c \"fabric validate sublime\"",
+			"windows": {
+				"cmd": "bash -c \"fabric validate sublime 2>&1 | sed -e 's/^\\/mnt\\/\\([a-z]\\)/\\1:/g'\""
+			}
 		}
 	]
 }
