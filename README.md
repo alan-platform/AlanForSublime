@@ -1,8 +1,16 @@
-# Fabric for Sublime Text
+# Alan for Sublime Text
 
-Provides support for Fabric projects with:
-- Build systems
+Provides support for Alan projects with:
 - Syntax highlighting in Alan files
+- Build systems for code checking with `alan validate`
+
+Learn more about Alan here:
+https://alan.m-industries.com
+
+
+## Deprecating Fabric
+
+Fabric was our internal code name for the Alan Application Platform. For the time being you can still use the `fabric` utility and the Fabric Validate build system. 
 
 
 ## Recommended keybindings

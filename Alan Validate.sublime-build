@@ -1,0 +1,21 @@
+{
+	"file_regex": "(\\S.*\\S):([0-9]+):([0-9]+):(?:error|warning): (.*(?:\n\t.*)*)",
+	"selector": "source.alan, source.ui.alan",
+	"working_dir": "$file_path",
+	"syntax": "Packages/Alan/Syntaxes/build.sublime-syntax",
+	"quiet": false,
+	"shell": true,
+	"cmd": "bash -c \"alan validate sublime --wire\"",
+	"windows": {
+		"cmd": "bash -c \"alan validate sublime --wire 2>&1 | sed -e 's/^\\/mnt\\/\\([a-z]\\)/\\1:/g'\""
+	},
+	"variants": [
+		{
+			"name": "Without Wiring",
+			"cmd": "bash -c \"alan validate sublime\"",
+			"windows": {
+				"cmd": "bash -c \"alan validate sublime 2>&1 | sed -e 's/^\\/mnt\\/\\([a-z]\\)/\\1:/g'\""
+			}
+		}
+	]
+}
