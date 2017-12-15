@@ -8,7 +8,6 @@ scope: source.alan
 contexts:
   main:
     - include: comments
-    - include: symbols
     - include: strings
     - include: braces
     - include: risky
