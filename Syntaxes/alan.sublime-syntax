@@ -42,7 +42,7 @@ contexts:
     - match: (')([^']+)(')(?=\s+->\s+command)
       captures:
         1: string.quoted.single.alan punctuation.definition.string.begin.alan
-        2: variable.other.readwrite.alan meta.symbol.alan
+        2: variable.other.readwrite.alan
         3: string.quoted.single.alanpunctuation.definition.string.end.alan
     - match: '"'
       captures:
@@ -107,11 +107,9 @@ contexts:
   constants:
     - match: \b[0-9]+(?=\s|//)
       scope: constant.numeric.alan
-    - match: \bMonday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday\b
+    - match: \bzero|one|Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday\b
       scope: constant.language.alan
-    - match: \[\.exe\]
-      scope: constant.language.alan
-    - match: \b(zero|one|yes|no|enabled|disabled|true|false)\b
+    - match: \b(yes|no|enabled|disabled|true|false)\b
       scope: constant.language.boolean.alan
 
   punctuation:
@@ -135,7 +133,7 @@ contexts:
       scope: variable.language.alan
 
   typical:
-    - match: (?:\s|^)(webservers|users|systems|system instances|settings|servers|root|roles mapping|roles|reporting|providing connections|projects|phrases|package dependencies|package|numerical types|numerical-types|linked node mapping|languages|keywords|issue channels|inverse|interfaces mapping|interface|generator|generate code|external systems|enable persistent storage for|duplication mapping|deeplink|configurations|component types|component rules|build dependencies|bash)(?=\b|//)
+    - match: (?:\s|^)(webservers|users|systems|system instances|settings|servers|root|roles mapping|roles|reporting|providing connections|projects|phrases|package dependencies|package|numerical types|numerical-types|linked node mapping|languages|keywords|issue channels|inverse|interfaces mapping|interface|generator|generate code|external systems|enable persistent storage for|duplication mapping|deeplink|configurations|component types|component rules|build dependencies)(?=\b|//)
       scope: entity.name.type.alan
     - match: (?:\s|^)(10\^|%d|trim|transform|switch|sumlist|sum|subtract|stringify|std|set|round|product|path|min|max|match|increment|from|fraction|format|execute|empty|division|diff|count|ceil|add)(?=\s|//)
       captures:
