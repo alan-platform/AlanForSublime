@@ -27,9 +27,9 @@ contexts:
         - match: \*/
           scope: punctuation.definition.comment.alan
           pop: true
-    - match: (#)(\S+)
+    - match: (#)([a-z]+)
       captures:
-        0: meta.annotation.alan support.function.builtin.alan
+        0: meta.annotation.alan variable.parameter.alan
         1: punctuation.definition.annotation.alan
 
   strings:
@@ -116,33 +116,31 @@ contexts:
     - match: (?:\s|^)(<=|=|>=|==|&&)(?=\s|//)
       captures:
         1: keyword.operator.comparison.alan
-    - match: (?:\s|^|\B)(::|:|->|=>|~>|<-|<~)(?=\s|//)
+    - match: (?:\s|^|\B)(::|:|->|=>|~>|<-|<~|>-)(?=\s|//)
       captures:
         1: punctuation.separator.key-value.alan
     - match: (,)
       scope: punctuation.separator.comma.alan
 
   steps:
+    - match: (>key|.key|.self|[\.?\#%\+&\$@]+)
+      captures:
+        0: variable.language.alan
     - match: ([<>\*\|\^\-])+
       captures:
         0: keyword.operator.alan
-    - match: ([\.?\#%\+&]+)
-      captures:
-        0: punctuation.accessor.alan
-    - match: \$
-      scope: variable.language.alan
 
   typical:
-    - match: (?:\s|^)(webservers|users|systems|system instances|settings|servers|root|roles mapping|roles|reporting|providing connections|projects|phrases|package dependencies|package|numerical types|numerical-types|linked node mapping|languages|keywords|issue channels|inverse|interfaces mapping|interface|generator|generate code|external systems|enable persistent storage for|duplication mapping|deeplink|configurations|component types|component rules|build dependencies)(?=\b|//)
+    - match: (?:\s|^)(webservers|users|systems|system instances|settings|servers|root|roles mapping|roles|reporting|providing connections|projects|phrases|package dependencies|package|numerical types|numerical-types|linked node mapping|languages|keywords|issue channels|inverse|interfaces mapping|interface|generator|generate code|external systems|enable persistent storage for|duplication mapping|dense|deeplink|configurations|component types|component rules|component|build dependencies)(?=\b|//)
       scope: entity.name.type.alan
-    - match: (?:\s|^)(10\^|%d|trim|transform|switch|sumlist|sum|subtract|stringify|std|set|round|product|path|min|max|match|increment|from|fraction|format|execute|empty|division|diff|count|ceil|add)(?=\s|//)
+    - match: (?:\s|^)(10\^|%d|trim|transform|switch|sumlist|sum|subtract|stringify|std|set|round|product|path|min|max|match|increment|from|fraction|format|execute|empty|division|diff|creation-time|count|ceil|add)(?=\s|//)
       captures:
         1: entity.name.function.alan
 
   catch-all:
-    - match: (?:\s|^)(writable|write|workfor|without|with|window|widget|where|Wednesday|webservers|webserver|wallpaper|views|view|version|verified|value|UTC|using|users|user|url|updater|update|unsubscribe|unique|unexpected|unconstrained|UID|types|type|type|Tuesday|trim|token|today|to-integer|to|timezone|timer|time|Thursday|then|templates|TEMP2|TEMP|tags|tag|tables|table|system-type|systems|system|switchable|switch|supported|Sunday|sumlist|sum|success|subtract|substring|subscription|subscribe|stringify|strategy|str|store|storage|stopwatch|sticky|std|static|state|state|startswith|start|space|sort|socket|small|single|shared|setto|settings|set|servers|separator|separate|selection|selection|selected|select|seconds|schedule|scaling|Saturday|runenv|roles|role|resolvable|requires|request|reports|reporting|report|rename|remove|remainder|reload|relative|regexp|refresh|referencer|record|read|rate|query|proxy|providing|provides|provide|protocol|property|project|product|primary|prevention|preceding|power|port|plural|placeholder|phrases|persistent|pcsc|path|password|parameters|parameter|panic|overview|outputs|out|ordered|or|operator|open|ontimeout|on|of|numerical|nullable|now|not|none|node|new|never|namespace|name|mutation|multi-line|Monday|models|model|minutes|min|migration|metadata|merge|max|markup|mapping|map|login|log|loader|load|list|linker|linked|link|linear-graph|limit|limit|lifetime|length|languages/|languages|language|label|keys|keyboard|key|key|join|JOIN|issue|invoke|invocation|invalidate|interval|internal|interfaces|interface|instruction|instances|instance|inputs|input|inlined|inline|initialize|initialization|initial|index|indent|increment|include|in|implicit|implementation|implement|ignore|if|id|hours|hour|hidden|hash|hack|guid|graph|generator|from|Friday|frames|frame|forwards|forward|foreign|for|floor|float|flatten|flags|FIXME|first|fingerprint|find|filter|filename|file name|fields|fast|failure|factor|fabric|external|extension|exposes|expose|experimental|exit|EXISTS|execute|every|event|errors|error|equals|enum|entry|entity|enriched|enrich|engine|enable|empty|email|else|dynamic|duration|duration|duplicate|dormant|division|dist|diff|devenv|desired|description|descending|desc|derived|deprecated|deployments|depends|denseness|delete|default|default|decimal|day|datetime|date|database|custom|current|csv|creator|creation|created|create|count|copy|convert|control|context|content|contains|consumes|consume|constrain|connections|connection|configuration|concat|compiler|command|columns|clicks|checkpoint|channels|ceil|causal|cast|candidates|candidate|build|buckets|brand|branch|boolean|blinking|binding|bidirectional|base|autoincrement|auto|ATR|at|ascending|as|application|any|anonymous|announcement|and|anchor|allow|aggregate|administrator|admin|add|actions|acyclic|accidental|.self|$package|$deployed)(?=\s|//|:)
+    - match: (?:\s|^)(writable|write|workfor|without|with|window|widget|where|Wednesday|webservers|webserver|wallpaper|views|view|version|verified|value|UTC|using|users|user|url|updater|update|unsubscribe|unique|unexpected|unconstrained|UID|types|type|type|Tuesday|trim|token|today|to-integer|to|timezone|timer|time|Thursday|then|templates|TEMP2|TEMP|tags|tag|tables|table|system-type|systems|system|switchable|switch|supported|Sunday|sumlist|sum|success|subtract|substring|subscription|subscribe|stringify|strategy|str|store|storage|stopwatch|sticky|std|static|state|state|startswith|start|space|sort|socket|small|single|shared|setto|settings|set|servers|separator|separate|selection|selection|selected|select|seconds|schedule|scaling|Saturday|runenv|roles|role|resolvable|requires|request|reports|reporting|report|rename|remove|remainder|reload|relative|regexp|refresh|referencer|record|read|rate|query|proxy|providing|provides|provide|protocol|property|project|product|primary|prevention|preceding|power|port|plural|placeholder|phrases|persistent|pcsc|path|password|parameters|parameter|panic|overview|outputs|out|ordered|or|operator|open|ontimeout|on|of|numerical|nullable|now|not|none|node|new|never|namespace|name|mutation|multi-line|Monday|models|model|minutes|min|migration|metadata|merge|max|markup|mapping|map|login|log|loader|load|list|linker|linked|link|linear-graph|limit|limit|lifetime|length|languages/|languages|language|label|keys|keyboard|key|key|join|JOIN|issue|invoke|invocation|invalidate|interval|internal|interfaces|interface|instruction|instances|instance|inputs|input|inlined|inline|initialize|initialization|initial|index|indent|increment|include|in|implicit|implementation|implement|ignore|if|id|hours|hour|hidden|hash|hack|guid|graph|generator|from|Friday|frames|frame|forwards|forward|foreign|for|floor|float|flatten|flags|FIXME|first|fingerprint|find|filter|filename|file name|fields|fast|failure|factor|fabric|external|extension|exposes|expose|experimental|exit|EXISTS|execute|every|event|errors|error|equals|enum|entry|entity|enriched|enrich|engine|enable|empty|email|else|dynamic|duration|duration|duplicate|dormant|do|division|dist|diff|devenv|desired|description|descending|desc|derived|deprecated|deployments|depends|denseness|delete|default|default|decimal|day|datetime|date|database|custom|current|csv|creator|creation|created|create|count|copy|convert|control|context|content|contains|consumes|consume|constrain|connections|connection|configuration|concat|compiler|command|columns|clicks|checkpoint|channels|ceil|causal|cast|candidates|candidate|build|buckets|brand|branch|boolean|blinking|binding|bidirectional|base|autoincrement|auto|ATR|at|ascending|as|application|any|anonymous|announcement|and|anchor|allow|aggregate|administrator|admin|add|actions|acyclic|accidental|.self|$package|$deployed)(?=\s|//|:)
       captures:
         1: support.function.alan
-    - match: (?:\s|^)(variable|text|transformation|stategroup|sparsematrix|reference|number|natural|matrix|integer|group|file|dictionary|densematrix|component|collection|argument)(?=\s|//|:)
+    - match: (?:\s|^)(variable|text|transformation|stategroup|sparsematrix|reference-set|reference|number|natural|matrix|integer|group|file|dictionary|densematrix|collection|argument)(?=\s|//|:)
       captures:
         1: storage.type.alan
