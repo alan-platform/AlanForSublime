@@ -16,6 +16,20 @@
 			"windows": {
 				"cmd": "bash -c \"alan validate sublime 2>&1 | sed -e 's/^\\/mnt\\/\\([a-z]\\)/\\1:/g'\""
 			}
+		},
+		{
+			"name": "Local",
+			"cmd": "bash -c \"${folder}/alan validate sublime\"",
+			"windows": {
+				"cmd": "bash -c \"${folder}/alan validate sublime 2>&1 | sed -e 's/^\\/mnt\\/\\([a-z]\\)/\\1:/g'\""
+			}
+		},
+		{
+			"name": "Local Without Wiring",
+			"cmd": "bash -c \"${folder}/alan validate sublime\"",
+			"windows": {
+				"cmd": "bash -c \"${folder}/alan validate sublime 2>&1 | sed -e 's/^\\/mnt\\/\\([a-z]\\)/\\1:/g'\""
+			}
 		}
 	]
 }
