@@ -116,7 +116,7 @@ contexts:
     - match: (?:\s|^)(<=|=|>=|==|&&)(?=\s|//)
       captures:
         1: keyword.operator.comparison.alan
-    - match: (?:\s|^|\B)(::|:|->|=>|~>|<-|<~|>-)(?=\s|//)
+    - match: (?:\s|^|\B)(:=|::|:|->|=>|~>|<-|<~|>-)(?=\s|//)
       captures:
         1: punctuation.separator.key-value.alan
     - match: (,)
