@@ -126,7 +126,7 @@ contexts:
     - match: (>key|.key|.self|[\.?\#%\+&\$@]+)
       captures:
         0: variable.language.alan
-    - match: ([<>\*\|\^\-])+
+    - match: ([<>\*\|\^\-\/])+
       captures:
         0: keyword.operator.alan
 
