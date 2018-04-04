@@ -5,8 +5,8 @@
 	"syntax": "Packages/Alan/Syntaxes/build.sublime-syntax",
 	"quiet": false,
 	"shell": true,
-	"cmd": "bash -c \"$folder/migrations/dataenv/system-types/datastore-tools/system-scripts/build_migration.sh\"",
+	"cmd": "bash -c \"$folder/migrations/dataenv/system-types/datastore/system-scripts/build_migration.sh\"",
 	"windows": {
-		"cmd": "bash -c \"$folder/migrations/dataenv/system-types/datastore-tools/system-scripts/build_migration.sh 2>&1 | sed -e 's/^\\/mnt\\/\\([a-z]\\)/\\1:/g'\""
+		"cmd": "bash -c \"$folder/migrations/dataenv/system-types/datastore/system-scripts/build_migration.sh 2>&1 | sed -e 's/^\\/mnt\\/\\([a-z]\\)/\\1:/g'\""
 	}
 }
