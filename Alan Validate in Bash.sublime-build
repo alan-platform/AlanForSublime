@@ -1,0 +1,43 @@
+{
+	"file_regex": "(\\S.*\\S):([0-9]+):([0-9]+):(?:error|warning): (.*(?:\n\t.*)*)",
+	"selector": "source.alan, source.ui.alan",
+	"working_dir": "$file_path",
+	"syntax": "Packages/Alan/Syntaxes/build.sublime-syntax",
+	"quiet": false,
+	"shell": true,
+	"cmd": "alan validate sublime --wire",
+	"windows": {
+		"cmd": "wsl -c \"alan validate sublime --wire 2>&1 | sed -e 's/^\\/mnt\\/\\([a-z]\\)/\\1:/g'\""
+	},
+	"variants": [
+		{
+			"name": "Without Wiring",
+			"cmd": "alan validate sublime",
+			"windows": {
+				"cmd": "wsl -c \"alan validate sublime 2>&1 | sed -e 's/^\\/mnt\\/\\([a-z]\\)/\\1:/g'\""
+			}
+		},
+		{
+			"name": "Local",
+			"cmd": "${folder}/alan validate sublime --wire",
+			"windows": {
+				"cmd": "wsl -c \"${folder}/alan validate sublime --wire 2>&1 | sed -e 's/^\\/mnt\\/\\([a-z]\\)/\\1:/g'\""
+			}
+		},
+		{
+			"name": "Local Without Wiring",
+			"cmd": "${folder}/alan validate sublime",
+			"windows": {
+				"cmd": "wsl -c \"${folder}/alan validate sublime 2>&1 | sed -e 's/^\\/mnt\\/\\([a-z]\\)/\\1:/g'\""
+			}
+		},
+		{
+			"name": "Migration",
+			"selector": "source.alan",
+			"cmd": "${folder}/migrations/dataenv/system-types/datastore/system-scripts/build_migration.sh",
+			"windows": {
+				"cmd": "wsl -c \"${folder}/migrations/dataenv/system-types/datastore/system-scripts/build_migration.sh 2>&1 | sed -e 's/^\\/mnt\\/\\([a-z]\\)/\\1:/g'\""
+			}
+		}
+	]
+}
