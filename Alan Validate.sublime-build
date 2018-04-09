@@ -5,6 +5,7 @@
 	"syntax": "Packages/Alan/Syntaxes/build.sublime-syntax",
 	"quiet": false,
 	"shell": true,
+	"cmd": "alan.sh validate sublime --wire",
 	"windows": {
 		"cmd": [
 			"C:\\Program Files\\Git\\bin\\bash",
@@ -16,18 +17,8 @@
 	},
 	"variants": [
 		{
-			"name": "Without Wiring",
-			"windows": {
-				"cmd": [
-					"C:\\Program Files\\Git\\bin\\bash",
-					"alan.sh",
-					"validate",
-					"sublime"
-				]
-			}
-		},
-		{
 			"name": "Local",
+			"cmd": "${folder}/alan.sh validate sublime --wire",
 			"windows": {
 				"cmd": [
 					"C:\\Program Files\\Git\\bin\\bash",
@@ -37,24 +28,6 @@
 					"--wire"
 				]
 			}
-		},
-		{
-			"name": "Local Without Wiring",
-			"windows": {
-				"cmd": [
-					"C:\\Program Files\\Git\\bin\\bash",
-					"'${folder}/alan.sh'",
-					"validate",
-					"sublime"
-				]
-			}
-		},
-		{
-			"name": "Migration",
-			"selector": "source.alan",
-			"cmd": [
-				"${folder}/migrations/dataenv/system-types/datastore/system-scripts/build_migration.sh"
-			]
 		}
 	]
 }
