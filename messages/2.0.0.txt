@@ -1,0 +1,9 @@
+Alan for Sublime Text 2.0.0
+=============================
+
+2.0.0 adds specific build systems for both MinGW and WSL setups in Windows 10.
+
+The alan wrapper script is now expected to be named "alan.sh".
+
+For more info or to report issues:
+https://github.com/M-industries/FabricForSublime

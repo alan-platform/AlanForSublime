@@ -5,28 +5,28 @@
 	"syntax": "Packages/Alan/Syntaxes/build.sublime-syntax",
 	"quiet": false,
 	"shell": true,
-	"cmd": "alan validate sublime --wire",
+	"cmd": "alan.sh validate sublime --wire",
 	"windows": {
-		"cmd": "wsl -c \"alan validate sublime --wire 2>&1 | sed -e 's/^\\/mnt\\/\\([a-z]\\)/\\1:/g'\""
+		"cmd": "wsl -c \"alan.sh validate sublime --wire 2>&1 | sed -e 's/^\\/mnt\\/\\([a-z]\\)/\\1:/g'\""
 	},
 	"variants": [
 		{
 			"name": "Without Wiring",
-			"cmd": "alan validate sublime",
+			"cmd": "alan.sh validate sublime",
 			"windows": {
-				"cmd": "wsl -c \"alan validate sublime 2>&1 | sed -e 's/^\\/mnt\\/\\([a-z]\\)/\\1:/g'\""
+				"cmd": "wsl -c \"alan.sh validate sublime 2>&1 | sed -e 's/^\\/mnt\\/\\([a-z]\\)/\\1:/g'\""
 			}
 		},
 		{
 			"name": "Local",
-			"cmd": "${folder}/alan validate sublime --wire",
+			"cmd": "${folder}/alan.sh validate sublime --wire",
 			"windows": {
-				"cmd": "wsl -c \"${folder}/alan validate sublime --wire 2>&1 | sed -e 's/^\\/mnt\\/\\([a-z]\\)/\\1:/g'\""
+				"cmd": "wsl -c \"${folder}/alan.sh validate sublime --wire 2>&1 | sed -e 's/^\\/mnt\\/\\([a-z]\\)/\\1:/g'\""
 			}
 		},
 		{
 			"name": "Local Without Wiring",
-			"cmd": "${folder}/alan validate sublime",
+			"cmd": "${folder}/alan.sh validate sublime",
 			"windows": {
 				"cmd": "wsl -c \"${folder}/alan validate sublime 2>&1 | sed -e 's/^\\/mnt\\/\\([a-z]\\)/\\1:/g'\""
 			}

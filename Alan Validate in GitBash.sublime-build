@@ -8,7 +8,7 @@
 	"windows": {
 		"cmd": [
 			"C:\\Program Files\\Git\\bin\\bash",
-			"alan",
+			"alan.sh",
 			"validate",
 			"sublime",
 			"--wire"
@@ -20,7 +20,7 @@
 			"windows": {
 				"cmd": [
 					"C:\\Program Files\\Git\\bin\\bash",
-					"alan",
+					"alan.sh",
 					"validate",
 					"sublime"
 				]
@@ -31,7 +31,7 @@
 			"windows": {
 				"cmd": [
 					"C:\\Program Files\\Git\\bin\\bash",
-					"'${folder}/alan'",
+					"'${folder}/alan.sh'",
 					"validate",
 					"sublime",
 					"--wire"
@@ -43,7 +43,7 @@
 			"windows": {
 				"cmd": [
 					"C:\\Program Files\\Git\\bin\\bash",
-					"'${folder}/alan'",
+					"'${folder}/alan.sh'",
 					"validate",
 					"sublime"
 				]
