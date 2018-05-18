@@ -5,6 +5,10 @@ name: Alan
 file_extensions:
   - alan
 scope: source.alan
+
+variables:
+  nonkeyword: (?=\s|'|"|//)
+
 contexts:
   main:
     - include: comments
@@ -68,28 +72,28 @@ contexts:
           pop: true
 
   braces:
-    - match: (?:\s|^)(\[)(?=\s|//)
+    - match: (?:\s|^)(\[){{nonkeyword}}
       captures:
         1: meta.brace.square punctuation.definition.array.begin.alan
-    - match: (?:\s|^)(\])(?=\s|//)
+    - match: (?:\s|^)(\]){{nonkeyword}}
       captures:
         1: meta.brace.square punctuation.definition.array.end.alan
-    - match: (?:\s|^)(\{{)(?=\s|//)
+    - match: (?:\s|^)(\{\{){{nonkeyword}}
       captures:
-        1: meta.brace.curly punctuation.definition.block.begin.alan
-    - match: (?:\s|^)(\}})(?=\s|//)
+        1: meta.brace.curly punctuation.section.group.begin.alan
+    - match: (?:\s|^)(\}\}){{nonkeyword}}
       captures:
-        1: meta.brace.curly punctuation.definition.block.end.alan
-    - match: (?:\s|^)(\{)(?=\s|//)
+        1: meta.brace.curly punctuation.section.group.end.alan
+    - match: (?:\s|^)(\{){{nonkeyword}}
       captures:
-        1: meta.brace.curly punctuation.definition.block.begin.alan
-    - match: (?:\s|^)(\})(?=\s|//)
+        1: meta.brace.curly punctuation.section.group.begin.alan
+    - match: (?:\s|^)(\}){{nonkeyword}}
       captures:
-        1: meta.brace.curly punctuation.definition.block.end.alan
-    - match: (?:\s|^)(\(|\~\(|\.\(|\.\^\(|\>\(|\+\(|\:\(|\%\^\(|\%\(|\+\^\(|\?\^\(|\}\()(?=\s|//)
+        1: meta.brace.curly punctuation.section.group.end.alan
+    - match: (?:\s|^)(\(|\~\(|\.\(|\.\^\(|\>\(|\+\(|\:\(|\%\^\(|\%\(|\+\^\(|\?\^\(|\}\(){{nonkeyword}}
       captures:
         1: meta.brace.round punctuation.definition.block.begin.alan
-    - match: (?:\s|^)(\))(?=\s|//)
+    - match: (?:\s|^)(\)){{nonkeyword}}
       captures:
         1: meta.brace.round punctuation.definition.block.end.alan
 
@@ -113,10 +117,10 @@ contexts:
       scope: constant.language.boolean.alan
 
   punctuation:
-    - match: (?:\s|^)(<=|=|>=|==|&&)(?=\s|//)
+    - match: (?:\s|^)(<=|=|>=|==|&&){{nonkeyword}}
       captures:
         1: keyword.operator.comparison.alan
-    - match: (?:\s|^|\B)(:=|::|:|->|=>|~>|<-|<~|>-)(?=\s|//)
+    - match: (?:\s|^|\B)(:=|::|:|->|=>|~>|<-|<~|>-){{nonkeyword}}
       captures:
         1: punctuation.separator.key-value.alan
     - match: (,)
