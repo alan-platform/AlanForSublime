@@ -8,6 +8,7 @@ scope: source.alan
 
 variables:
   nonkeyword: (?=\s|'|"|//)
+  entities: webservers|users|systems|system options|system instances|settings|servers|root|roles mapping|roles|reporting|providing connections|projects|phrases|package dependencies|package|numerical types|numerical-types|linked node mapping|languages|keywords|issue channels|inverse|interfaces mapping|interface|instance data|generator|generate code|external systems|enable persistent storage for|duplication mapping|dense|deeplink|configurations|component types|component rules|component|build dependencies
 
 contexts:
   main:
@@ -135,9 +136,12 @@ contexts:
         0: keyword.operator.alan
 
   typical:
-    - match: (?:\s|^)(webservers|users|systems|system options|system instances|settings|servers|root|roles mapping|roles|reporting|providing connections|projects|phrases|package dependencies|package|numerical types|numerical-types|linked node mapping|languages|keywords|issue channels|inverse|interfaces mapping|interface|instance data|generator|generate code|external systems|enable persistent storage for|duplication mapping|dense|deeplink|configurations|component types|component rules|component|build dependencies)(?=\b|//)
+    - match: ^({{entities}})(?=\b|//)
       captures:
         1: entity.name.type.alan
+    - match: (?:\s|^)({{entities}})(?=\b|//)
+      captures:
+        1: entity.name.other.alan
     - match: (?:\s|^)(10\^|%d|union|trim|transform|switch|sumlist|sum|subtract|stringify|std|set|round|product|path|min|migrate|max|match-branch|match|increment|from|fraction|format|execute|empty|division|diff|creation-time|count|ceil|add)(?=\s|//)
       captures:
         1: entity.name.function.alan
