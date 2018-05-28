@@ -68,30 +68,18 @@ contexts:
           pop: true
 
   braces:
-    - match: (?:\s|^)(\[){{nonkeyword}}
-      captures:
-        1: meta.brace.square punctuation.definition.array.begin.alan
-    - match: (?:\s|^)(\]){{nonkeyword}}
-      captures:
-        1: meta.brace.square punctuation.definition.array.end.alan
-    - match: (?:\s|^)(\{\{){{nonkeyword}}
-      captures:
-        1: meta.brace.curly punctuation.section.group.begin.alan
-    - match: (?:\s|^)(\}\}){{nonkeyword}}
-      captures:
-        1: meta.brace.curly punctuation.section.group.end.alan
-    - match: (?:\s|^)(\{){{nonkeyword}}
-      captures:
-        1: meta.brace.curly punctuation.section.group.begin.alan
-    - match: (?:\s|^)(\}){{nonkeyword}}
-      captures:
-        1: meta.brace.curly punctuation.section.group.end.alan
-    - match: (?:\s|^)(\(|\~\(|\.\(|\.\^\(|\>\(|\+\(|\:\(|\%\^\(|\%\(|\+\^\(|\?\^\(|\}\(){{nonkeyword}}
-      captures:
-        1: meta.brace.round punctuation.definition.block.begin.alan
-    - match: (?:\s|^)(\)){{nonkeyword}}
-      captures:
-        1: meta.brace.round punctuation.definition.block.end.alan
+    - match: \[
+      scope: meta.brace.square punctuation.definition.array.begin.alan
+    - match: \]
+      scope: meta.brace.square punctuation.definition.array.end.alan
+    - match: ([^a-zA-Z0-9'"]*)\{+
+      scope: meta.brace.curly punctuation.section.group.begin.alan
+    - match: \}+
+      scope: meta.brace.curly punctuation.section.group.end.alan
+    - match: ([^a-zA-Z0-9'"]*)\(
+      scope: meta.brace.round punctuation.definition.block.begin.alan
+    - match: \)
+      scope: meta.brace.round punctuation.definition.block.end.alan
 
   risky:
     - match: (<!)(?=\s|//)
