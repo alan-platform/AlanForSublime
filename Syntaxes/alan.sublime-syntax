@@ -94,14 +94,14 @@ contexts:
         1: meta.brace.round punctuation.definition.block.end.alan
 
   risky:
-    - match: (?:\s|^)(<!)(?=\s|//)
+    - match: (<!)(?=\s|//)
       captures:
-        1: invalid punctuation.definition.unsafe.begin.alan
+        1: punctuation.unsafe.begin.alan
       push:
-        - meta_scope: meta.unsafe.alan
+        - meta_scope: invalid meta.unsafe.alan
         - match: \>(?=\s|//)
           captures:
-            0: invalid punctuation.definition.unsafe.end.alan
+            0: punctuation.unsafe.end.alan
           pop: true
 
   constants:
