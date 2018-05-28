@@ -44,11 +44,6 @@ contexts:
         1: string.quoted.single.alan punctuation.definition.string.begin.alan
         2: variable.other.readwrite.alan
         3: string.quoted.single.alan punctuation.definition.string.end.alan
-    - match: (')([^']+)(')(?=\s+->\s+command)
-      captures:
-        1: string.quoted.single.alan punctuation.definition.string.begin.alan
-        2: variable.other.readwrite.alan
-        3: string.quoted.single.alanpunctuation.definition.string.end.alan
     - match: '"'
       captures:
         0: punctuation.definition.string.begin.alan
