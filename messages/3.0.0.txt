@@ -1,0 +1,9 @@
+Alan for Sublime Text 3.0.0
+=============================
+
+- alan.sh is now alan
+- adds "alan build" build system to build entire projects
+
+
+For more info or to report issues:
+https://github.com/M-industries/FabricForSublime

@@ -1,28 +1,28 @@
 {
 	"file_regex": "(\\S.*\\S):([0-9]+):([0-9]+):(?:error|warning): (.*(?:\n\t.*)*)",
-	"selector": "source.alan, source.ui.alan",
+	// "selector": "source.alan, source.ui.alan",
 	"working_dir": "$file_path",
 	"syntax": "Packages/Alan/Syntaxes/build.sublime-syntax",
 	"quiet": false,
 	"shell": true,
-	"cmd": "alan validate sublime",
+	"cmd": "alan build sublime",
 	"windows": {
 		"cmd": [
 			"C:\\Program Files\\Git\\bin\\bash",
 			"alan",
-			"validate",
+			"build",
 			"sublime"
 		]
 	},
 	"variants": [
 		{
 			"name": "Local",
-			"cmd": "${folder}/alan validate sublime",
+			"cmd": "${folder}/alan build sublime",
 			"windows": {
 				"cmd": [
 					"C:\\Program Files\\Git\\bin\\bash",
 					"'${folder}/alan'",
-					"validate",
+					"build",
 					"sublime"
 				]
 			}
