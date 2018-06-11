@@ -121,6 +121,9 @@ contexts:
     - match: ([<>\*\|\^\-\/])+
       captures:
         0: keyword.operator.alan
+    - match: (?:\s|^)(if|else|then|has|in)(?=\s|//|:)
+      captures:
+        1: keyword.operator.logical.alan
 
   typical:
     - match: ^({{entities}})(?=\b|//)
