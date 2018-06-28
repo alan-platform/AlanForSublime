@@ -12,9 +12,9 @@ contexts:
     - match: '^(\S.*\S):[0-9]+:[0-9]+'
       captures:
         1: string.path.build.alan
-    - match: "(error):"
+    - match: '\b(warning|error): '
       captures:
-        1: invalid.illegal.build.alan
+        1: message.error
     - match: "(warning):"
       captures:
         1: invalid.deprecated.build.alan
