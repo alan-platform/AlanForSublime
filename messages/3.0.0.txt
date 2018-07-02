@@ -6,4 +6,4 @@ Alan for Sublime Text 3.0.0
 
 
 For more info or to report issues:
-https://github.com/M-industries/FabricForSublime
+https://github.com/M-industries/AlanForSublime
