@@ -8,7 +8,7 @@ scope: source.alan
 
 variables:
   nonkeyword: (?=\s|'|"|//)
-  entities: webservers|users|systems|system-options|system-instances|settings|servers|root|roles|reporting|provided-connections|projects|phrases|package|numerical-types|languages|keywords|inverse|interfaces|interface|instance-data|generator|external-systems|dense|deeplink|configurations|component-types|component-rules|component
+  entities: webservers|users|systems|system-options|system-instances|settings|servers|root|roles|reporting|provided-connections|projects|phrases|package|numerical-types|numerical type mapping|numerical type conversion|languages|keywords|inverse|interfaces|interface|instance-data|generator|external-systems|dense|deeplink|configurations|component-types|component-rules|component
 
 contexts:
   main:
