@@ -1,6 +1,6 @@
 {
+	"keyfiles": ["alan.sh"],
 	"file_regex": "(\\S.*\\S):([0-9]+):([0-9]+):(?:error|warning): (.*(?:\n\t.*)*)",
-	"selector": "source.alan, source.ui.alan",
 	"working_dir": "$file_path",
 	"syntax": "Packages/Alan/Syntaxes/build.sublime-syntax",
 	"quiet": false,
