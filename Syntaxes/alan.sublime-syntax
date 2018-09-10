@@ -134,7 +134,7 @@ contexts:
     - match: (?:\s|^)({{entities}})(?=\b|//)
       captures:
         1: entity.name.other.alan
-    - match: (?:\s|^)(10\^|%d|union|trim|transform|to-number|to-text|switch|sumlist|sum|subtract|stringify|std|set|round|product|path|min|migrate|max|match-branch|match|increment|from|fraction|format|execute|empty|division|diff|creation-time|count|ceil|add)(?=\s|//)
+    - match: (?:\s|^)(10\^|%d|union|trim|transform|to-number|to-text|switch|sumlist|sum|subtract|stringify|std|set|round|product|path|min|migrate|max|match-branch|match|increment|from|fraction|format|execute|equal|empty|division|diff|creation-time|count|ceil|add)(?=\s|//)
       captures:
         1: entity.name.function.alan
 
