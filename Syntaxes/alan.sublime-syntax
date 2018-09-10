@@ -86,6 +86,8 @@ contexts:
       scope: meta.brace.round punctuation.definition.block.end.alan
 
   risky:
+    - match: \bunsafe\b
+      scope: invalid meta.unsafe.alan
     - match: (<!)(?=\s|//)
       captures:
         1: punctuation.unsafe.begin.alan
