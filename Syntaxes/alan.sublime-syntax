@@ -32,10 +32,9 @@ contexts:
         - match: \*/
           scope: punctuation.definition.comment.alan
           pop: true
-    - match: (#)([a-z_-]+)
+    - match: (can-)([a-z_-]+)
       captures:
         0: meta.annotation.alan variable.parameter.alan
-        1: punctuation.definition.annotation.alan
     - match: (@)([a-z_-]+)
       captures:
         0: meta.annotation.alan variable.other.alan
