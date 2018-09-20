@@ -4,5 +4,5 @@
 	"working_dir": "$folder",
 	"syntax": "Packages/Alan/Syntaxes/build.sublime-syntax",
 	"shell": true,
-	"cmd": "./alan package dist/project.pkg ${file_path} -f minors.json"
+	"cmd": "./alan package dist/project.pkg ${file_path}"
 }
