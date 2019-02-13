@@ -1,8 +1,17 @@
 {
-	"file_patterns": ["deployment.alan"],
+	"file_patterns": ["deployment.alan", "connections.alan"],
 	"file_regex": "(\\S.*\\S):([0-9]+):([0-9]+):(?:error|warning): (.*(?:\n\t.*)*)",
 	"working_dir": "$folder",
 	"syntax": "Packages/Alan/Syntaxes/build.sublime-syntax",
 	"shell": true,
-	"cmd": "./alan package dist/project.pkg ${file_path}"
+	"cmd": "${folder}/alan package dist/project.pkg ${file_path}",
+	"windows": {
+		"cmd": [
+			"C:\\Program Files\\Git\\bin\\bash",
+			"'${folder}/alan'",
+			"package",
+			"dist/project.pkg",
+			"${file_path}"
+		]
+	}
 }
